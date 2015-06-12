@@ -282,6 +282,42 @@ ustawienia:
   route: newsletter/settings
   visible_in_primary: true
   parent_id: 34
+miejsca:
+  name: miejsca
+  label: Miejsca
+  route: place-main
+  class: fa fa-globe
+  access: 4
+tworzenie-miejsca:
+  name: tworzenie-miejsca
+  label: Dodaj nowy
+  route: place/create
+  visible_in_primary: true
+  parent_id: 47
+lista-miejsc:
+  name: lista-miejsc
+  label: Lista miejsc
+  route: place
+  visible_in_primary: true
+  parent_id: 47
+edycja-miejsca:
+  name: edycja-miejsca
+  label: Edycja miejsca
+  route: place/edit
+  visible_in_primary: false
+  parent_id: 47
+podglad-miejsca:
+  name: podglad-miejsca
+  label: Podgląd miejsca
+  route: place/preview
+  visible_in_primary: false
+  parent_id: 47
+usuwanie-miejsca:
+  name: usuwanie-miejsca
+  label: Usuwanie miejsca
+  route: place/delete
+  visible_in_primary: false
+  parent_id: 47
 slowniki:
   name: slowniki
   label: Słowniki
@@ -293,19 +329,19 @@ testowa-lista:
   label: Testowa lista
   route: dictionary
   visible_in_primary: true
-  parent_id: 47
+  parent_id: 48
   params: "'category' => 'position'"
 testowe-tworzenie:
   name: testowe-tworzenie
   label: Testowe tworzenie
   route: dictionary/create
   visible_in_primary: false
-  parent_id: 47
+  parent_id: 48
   params: "'category' => 'position'"
 testowa-edycja:
   name: testowe-tworzenie
   label: Testowe tworzenie
   route: dictionary/edit
   visible_in_primary: false
-  parent_id: 47
+  parent_id: 48
   params: "'category' => 'position'"

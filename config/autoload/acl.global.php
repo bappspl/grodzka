@@ -54,6 +54,9 @@ return array(
                 'CmsIr\Banner\Controller\Banner' => array(
                     'all'	=> 'superadmin',
                 ),
+                'CmsIr\Place\Controller\Place' => array(
+                    'all'	=> 'superadmin',
+                ),
             )
         )
     )
