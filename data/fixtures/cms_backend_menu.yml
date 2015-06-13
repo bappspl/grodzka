@@ -86,34 +86,34 @@ podglad-newsa:
   visible_in_primary: false
   parent_id: 10
   params: "'category' => 'news'"
-lista-wydarzen:
-  name: lista-wydarzen
-  label: Lista wydarzeń
+lista-referencji:
+  name: lista-referencji
+  label: Lista referencji
   route: post
   visible_in_primary: true
   parent_id: 10
-  params: "'category' => 'events'"
-tworzenie-wydarzenia:
-  name: tworzenie-wydarzenia
-  label: Tworzenie wydarzenia
+  params: "'category' => 'testimonials'"
+tworzenie-referencji:
+  name: tworzenie-referencji
+  label: Tworzenie referencji
   route: post/create
   visible_in_primary: false
   parent_id: 10
-  params: "'category' => 'events'"
-edycja-wydarzenia:
-  name: edycja-wydarzenia
-  label: Edycja wydarzenia
+  params: "'category' => 'testimonials'"
+edycja-referencji:
+  name: edycja-referencji
+  label: Edycja referencji
   route: post/edit
   visible_in_primary: false
   parent_id: 10
-  params: "'category' => 'events'"
-podglad-wydarzenia:
-  name: podglad-wydarzenia
-  label: Podgląd wydarzenia
+  params: "'category' => 'testimonials'"
+podglad-referencji:
+  name: podglad-referencji
+  label: Podgląd referencji
   route: post/preview
   visible_in_primary: false
   parent_id: 10
-  params: "'category' => 'events'"
+  params: "'category' => 'testimonials'"
 slider:
   name: slider
   label: Slider
@@ -164,37 +164,37 @@ edycja-elementu:
   parent_id: 19
 uzytkownicy:
   name: uzytkownicy
-  label: Użytkownicy
+  label: Specjaliści
   route: users-main
   class: fa fa-users
   access: 4
 tworzenie-uzytkownika:
-  name: tworzenie-uzytkownika
+  name: tworzenie-specjalisty
   label: Dodaj nowy
   route: users/create
   visible_in_primary: true
   parent_id: 27
 lista-uzytkownikow:
   name: lista-uzytkownikow
-  label: Lista użytkowników
+  label: Lista specjalistów
   route: users
   visible_in_primary: true
   parent_id: 27
 edycja-uzytkownikow:
   name: edycja-uzytkownikow
-  label: Edycja użytkowników
+  label: Edycja specjalisty
   route: users/edit
   visible_in_primary: false
   parent_id: 27
 podglad-uzytkownikwa:
   name: podglad-uzytkownikowa
-  label: Podgląd użytkownika
+  label: Podgląd specjalisty
   route: users/preview
   visible_in_primary: false
   parent_id: 27
 usuwanie-uzytkownikowa:
   name: usuwanie-uzytkownikowa
-  label: Usuwanie użytkownika
+  label: Usuwanie specjalisty
   route: users/delete
   visible_in_primary: false
   parent_id: 27

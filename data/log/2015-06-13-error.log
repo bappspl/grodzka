@@ -1,0 +1,30 @@
+2015-06-13T14:30:04+02:00 CRIT (2): exception 'Zend\Form\Exception\InvalidElementException' with message 'No element by the name of [date_from] found in form' in D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Form\Fieldset.php:223
+Stack trace:
+#0 D:\xampp\htdocs\web-ir\grodzka\vendor\cms-ir\cms-ir\src\CmsIr\Post\view\cms-ir\post\preview-post.phtml(41): Zend\Form\Fieldset->get('date_from')
+#1 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\Renderer\PhpRenderer.php(506): include('D:\\xampp\\htdocs...')
+#2 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(205): Zend\View\Renderer\PhpRenderer->render(Object(Zend\View\Model\ViewModel))
+#3 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(233): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#4 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(198): Zend\View\View->renderChildren(Object(Zend\View\Model\ViewModel))
+#5 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\View\Http\DefaultRenderingStrategy.php(103): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#6 [internal function]: Zend\Mvc\View\Http\DefaultRenderingStrategy->render(Object(Zend\Mvc\MvcEvent))
+#7 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#8 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('render', Object(Zend\Mvc\MvcEvent), Array)
+#9 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(352): Zend\EventManager\EventManager->trigger('render', Object(Zend\Mvc\MvcEvent))
+#10 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
+#11 D:\xampp\htdocs\web-ir\grodzka\public\index.php(17): Zend\Mvc\Application->run()
+#12 {main}
+2015-06-13T15:27:23+02:00 CRIT (2): exception 'Zend\Form\Exception\InvalidElementException' with message 'No element by the name of [date_from] found in form' in D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Form\Fieldset.php:223
+Stack trace:
+#0 D:\xampp\htdocs\web-ir\grodzka\vendor\cms-ir\cms-ir\src\CmsIr\Post\view\cms-ir\post\preview-post.phtml(41): Zend\Form\Fieldset->get('date_from')
+#1 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\Renderer\PhpRenderer.php(506): include('D:\\xampp\\htdocs...')
+#2 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(205): Zend\View\Renderer\PhpRenderer->render(Object(Zend\View\Model\ViewModel))
+#3 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(233): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#4 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(198): Zend\View\View->renderChildren(Object(Zend\View\Model\ViewModel))
+#5 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\View\Http\DefaultRenderingStrategy.php(103): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#6 [internal function]: Zend\Mvc\View\Http\DefaultRenderingStrategy->render(Object(Zend\Mvc\MvcEvent))
+#7 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#8 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('render', Object(Zend\Mvc\MvcEvent), Array)
+#9 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(352): Zend\EventManager\EventManager->trigger('render', Object(Zend\Mvc\MvcEvent))
+#10 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
+#11 D:\xampp\htdocs\web-ir\grodzka\public\index.php(17): Zend\Mvc\Application->run()
+#12 {main}
