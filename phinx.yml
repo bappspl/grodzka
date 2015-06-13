@@ -7,7 +7,7 @@ environments:
 
     dev:
         adapter: mysql
-        host: localhost
+        host: 127.0.0.1
         name: grodzka
         user: root
         pass: ''
