@@ -20,6 +20,7 @@ class CmsCreateUsers extends AbstractMigration
              ->addColumn('filename', 'string' , array('null' => true))
              ->addColumn('registration_date', 'datetime')
              ->addColumn('registration_token', 'string')
+             ->addColumn('extra', 'text', array('null' => true))
              ->save();
 
         $this->insertYamlValues('cms_users');

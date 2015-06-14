@@ -29,6 +29,19 @@ class CmsCreateBackendMenu extends AbstractMigration
 
         foreach ($array as $sArray){
             $value = '';
+            if(array_key_exists('parent_id', $sArray))
+            {
+                $parentKey = $sArray['parent_id'];
+                $parentArray = $array[$parentKey];
+                $name = $parentArray['name'];
+                $route = $parentArray['route'];
+                $parentId = $this->adapter->fetchRow('SELECT id FROM '.$tableName.' WHERE name="'.$name.'" AND route="'.$route.'" ');
+
+                if($parentId)
+                {
+                    $sArray['parent_id'] = $parentId['id'];
+                }
+            }
 
             foreach ($sArray as $kCol => $vCol) {
                 $vCol === null ? $value = $value . $kCol .' = NULL , ' : $value = $value . $kCol .' = "' . $vCol . '", ';
@@ -37,6 +50,7 @@ class CmsCreateBackendMenu extends AbstractMigration
             $realValue = substr($value, 0, -2);
             $this->execute("SET NAMES UTF8");
             $this->adapter->execute('insert into '.$tableName.' set '.$realValue);
+
         }
     }
 
