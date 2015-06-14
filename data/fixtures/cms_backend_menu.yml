@@ -210,6 +210,12 @@ newsletter:
   route: newsletter-main
   class: fa fa-envelope-o
   access: 4
+lista-newsletter:
+  name: lista-newsletter
+  label: Wiadomości
+  route: newsletter
+  visible_in_primary: true
+  parent_id: 34
 tworzenie-wiadomosci:
   name: tworzenie-wiadomosci
   label: Tworzenie wiadomości

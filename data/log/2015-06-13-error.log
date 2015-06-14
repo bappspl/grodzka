@@ -28,3 +28,20 @@ Stack trace:
 #10 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
 #11 D:\xampp\htdocs\web-ir\grodzka\public\index.php(17): Zend\Mvc\Application->run()
 #12 {main}
+2015-06-13T20:29:17+02:00 CRIT (2): exception 'Zend\Mvc\Router\Exception\RuntimeException' with message 'Route with name "subscriber-group" not found' in D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Router\Http\TreeRouteStack.php:317
+Stack trace:
+#0 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Controller\Plugin\Url.php(99): Zend\Mvc\Router\Http\TreeRouteStack->assemble(Array, Array)
+#1 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Controller\Plugin\Redirect.php(48): Zend\Mvc\Controller\Plugin\Url->fromRoute('subscriber-grou...', Array, Array, false)
+#2 D:\xampp\htdocs\web-ir\grodzka\vendor\cms-ir\cms-ir\src\CmsIr\Newsletter\src\Newsletter\Controller\SubscriberController.php(282): Zend\Mvc\Controller\Plugin\Redirect->toRoute('subscriber-grou...')
+#3 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Controller\AbstractActionController.php(83): CmsIr\Newsletter\Controller\SubscriberController->createSubscriberGroupAction()
+#4 [internal function]: Zend\Mvc\Controller\AbstractActionController->onDispatch(Object(Zend\Mvc\MvcEvent))
+#5 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#6 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#7 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Controller\AbstractController.php(116): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#8 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\DispatchListener.php(113): Zend\Mvc\Controller\AbstractController->dispatch(Object(Zend\Http\PhpEnvironment\Request), Object(Zend\Http\PhpEnvironment\Response))
+#9 [internal function]: Zend\Mvc\DispatchListener->onDispatch(Object(Zend\Mvc\MvcEvent))
+#10 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#11 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#12 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(313): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#13 D:\xampp\htdocs\web-ir\grodzka\public\index.php(17): Zend\Mvc\Application->run()
+#14 {main}

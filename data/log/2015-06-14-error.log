@@ -1,0 +1,19 @@
+2015-06-14T11:34:02+02:00 CRIT (2): exception 'Zend\View\Exception\RuntimeException' with message 'Zend\View\Renderer\PhpRenderer::render: Unable to render template "partial/form/delete-massive-newsletter-modal"; resolver could not resolve to a file' in D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\Renderer\PhpRenderer.php:498
+Stack trace:
+#0 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\Helper\Partial.php(61): Zend\View\Renderer\PhpRenderer->render('partial/form/de...', NULL)
+#1 [internal function]: Zend\View\Helper\Partial->__invoke('partial/form/de...')
+#2 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\Renderer\PhpRenderer.php(399): call_user_func_array(Object(Zend\View\Helper\Partial), Array)
+#3 D:\xampp\htdocs\web-ir\grodzka\vendor\cms-ir\cms-ir\src\CmsIr\Newsletter\view\cms-ir\newsletter\newsletter.phtml(37): Zend\View\Renderer\PhpRenderer->__call('partial', Array)
+#4 D:\xampp\htdocs\web-ir\grodzka\vendor\cms-ir\cms-ir\src\CmsIr\Newsletter\view\cms-ir\newsletter\newsletter.phtml(37): Zend\View\Renderer\PhpRenderer->partial('partial/form/de...')
+#5 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\Renderer\PhpRenderer.php(506): include('D:\\xampp\\htdocs...')
+#6 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(205): Zend\View\Renderer\PhpRenderer->render(Object(Zend\View\Model\ViewModel))
+#7 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(233): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#8 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\View\View.php(198): Zend\View\View->renderChildren(Object(Zend\View\Model\ViewModel))
+#9 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\View\Http\DefaultRenderingStrategy.php(103): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#10 [internal function]: Zend\Mvc\View\Http\DefaultRenderingStrategy->render(Object(Zend\Mvc\MvcEvent))
+#11 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#12 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\EventManager\EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('render', Object(Zend\Mvc\MvcEvent), Array)
+#13 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(352): Zend\EventManager\EventManager->trigger('render', Object(Zend\Mvc\MvcEvent))
+#14 D:\xampp\htdocs\web-ir\grodzka\vendor\zendframework\zendframework\library\Zend\Mvc\Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
+#15 D:\xampp\htdocs\web-ir\grodzka\public\index.php(17): Zend\Mvc\Application->run()
+#16 {main}
