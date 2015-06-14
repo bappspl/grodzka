@@ -57,6 +57,9 @@ return array(
                 'CmsIr\Place\Controller\Place' => array(
                     'all'	=> 'superadmin',
                 ),
+                'CmsIr\Dictionary\Controller\Dictionary' => array(
+                    'all'	=> 'superadmin',
+                ),
             )
         )
     )

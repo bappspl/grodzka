@@ -9,6 +9,7 @@ class CmsCreatePage extends AbstractMigration
     {
         $this->table('cms_page', array())
              ->addColumn('name', 'string')
+             ->addColumn('subtitle', 'string', array('null'=>true))
              ->addColumn('slug', 'string')
              ->addColumn('url', 'string')
              ->addColumn('status_id', 'integer')
