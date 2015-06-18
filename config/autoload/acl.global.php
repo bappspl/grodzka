@@ -60,6 +60,12 @@ return array(
                 'CmsIr\Dictionary\Controller\Dictionary' => array(
                     'all'	=> 'superadmin',
                 ),
+                'Pharmacy\Controller\Pharmacy' => array(
+                    'all'	=> 'superadmin',
+                ),
+                'Medicaments\Controller\Medicaments' => array(
+                    'all'	=> 'superadmin',
+                ),
             )
         )
     )

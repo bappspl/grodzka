@@ -20,6 +20,8 @@ return array(
         'CmsIr\File',
         'CmsIr\Banner',
         'CmsIr\Place',
+        'Pharmacy',
+        'Medicaments',
     ),
     'module_listener_options' => array(
         'module_paths' => array(

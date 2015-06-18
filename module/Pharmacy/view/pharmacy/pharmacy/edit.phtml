@@ -1,0 +1,49 @@
+<?php
+$form = $this->form;
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<?php echo $this->customFormHelper($form->get('id')) ?>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="the-box">
+
+                <h4 class="small-title">Dane podstawowe</h4>
+                <?php echo $this->customFormHelper($form->get('name')) ?>
+                <?php echo $this->customFormHelper($form->get('city')) ?>
+                <?php echo $this->customFormHelper($form->get('street')) ?>
+                <?php echo $this->customFormHelper($form->get('zip_code')) ?>
+                <?php echo $this->customFormHelper($form->get('phone')) ?>
+                <?php echo $this->customFormHelper($form->get('weekdays')) ?>
+                <?php echo $this->customFormHelper($form->get('saturday')) ?>
+                <?php echo $this->customFormHelper($form->get('sunday')) ?>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="the-box">
+
+                <h4 class="small-title">Miejsce</h4>
+
+                <?php echo $this->customFormHelper($form->get('place_id')) ?>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="the-box">
+                <div class="input-group col-sm-12 text-right">
+                    <a class="btn btn-default" href="<?php echo $this->url('pharmacy'); ?>">Anuluj</a> &nbsp
+                    <?php echo $this->formInput($form->get('submit')); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php $this->headLink()->appendStylesheet($this->basePath().'/css/pharmacy.css'); ?>

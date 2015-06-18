@@ -1,0 +1,38 @@
+2015-06-17T22:45:55+02:00 CRIT (2): exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'place_id' cannot be null' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/Adapter/Driver/Pdo/Statement.php:239
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/Adapter/Driver/Pdo/Statement.php(239): PDOStatement->execute()
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(291): Zend\Db\Adapter\Driver\Pdo\Statement->execute()
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(258): Zend\Db\TableGateway\AbstractTableGateway->executeInsert(Object(Zend\Db\Sql\Insert))
+#3 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Model/PharmacyTable.php(57): Zend\Db\TableGateway\AbstractTableGateway->insert(Array)
+#4 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Controller/PharmacyController.php(61): Pharmacy\Model\PharmacyTable->save(Object(Pharmacy\Model\Pharmacy))
+#5 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractActionController.php(83): Pharmacy\Controller\PharmacyController->createAction()
+#6 [internal function]: Zend\Mvc\Controller\AbstractActionController->onDispatch(Object(Zend\Mvc\MvcEvent))
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(116): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#10 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/DispatchListener.php(113): Zend\Mvc\Controller\AbstractController->dispatch(Object(Zend\Http\PhpEnvironment\Request), Object(Zend\Http\PhpEnvironment\Response))
+#11 [internal function]: Zend\Mvc\DispatchListener->onDispatch(Object(Zend\Mvc\MvcEvent))
+#12 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#13 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#14 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(313): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#15 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#16 {main}
+
+Next exception 'Zend\Db\Adapter\Exception\InvalidQueryException' with message 'Statement could not be executed (23000 - 1048 - Column 'place_id' cannot be null)' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/Adapter/Driver/Pdo/Statement.php:244
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(291): Zend\Db\Adapter\Driver\Pdo\Statement->execute()
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(258): Zend\Db\TableGateway\AbstractTableGateway->executeInsert(Object(Zend\Db\Sql\Insert))
+#2 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Model/PharmacyTable.php(57): Zend\Db\TableGateway\AbstractTableGateway->insert(Array)
+#3 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Controller/PharmacyController.php(61): Pharmacy\Model\PharmacyTable->save(Object(Pharmacy\Model\Pharmacy))
+#4 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractActionController.php(83): Pharmacy\Controller\PharmacyController->createAction()
+#5 [internal function]: Zend\Mvc\Controller\AbstractActionController->onDispatch(Object(Zend\Mvc\MvcEvent))
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(116): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/DispatchListener.php(113): Zend\Mvc\Controller\AbstractController->dispatch(Object(Zend\Http\PhpEnvironment\Request), Object(Zend\Http\PhpEnvironment\Response))
+#10 [internal function]: Zend\Mvc\DispatchListener->onDispatch(Object(Zend\Mvc\MvcEvent))
+#11 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#12 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#13 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(313): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#14 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#15 {main}

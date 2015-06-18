@@ -1,0 +1,20 @@
+2015-06-18T21:18:54+02:00 CRIT (2): exception 'Zend\ServiceManager\Exception\ServiceNotFoundException' with message 'Zend\Mvc\Controller\PluginManager::get was unable to fetch or create an instance for getPlaceService' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/ServiceManager/ServiceManager.php:550
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/ServiceManager/AbstractPluginManager.php(103): Zend\ServiceManager\ServiceManager->get('getPlaceService', true)
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/PluginManager.php(82): Zend\ServiceManager\AbstractPluginManager->get('getPlaceService', NULL, true)
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(284): Zend\Mvc\Controller\PluginManager->get('getPlaceService', NULL)
+#3 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(299): Zend\Mvc\Controller\AbstractController->plugin('getPlaceService')
+#4 /media/wtk13/Reszta/htdocs/grodzka/module/Medicaments/src/Medicaments/Controller/MedicamentsController.php(49): Zend\Mvc\Controller\AbstractController->__call('getPlaceService', Array)
+#5 /media/wtk13/Reszta/htdocs/grodzka/module/Medicaments/src/Medicaments/Controller/MedicamentsController.php(49): Medicaments\Controller\MedicamentsController->getPlaceService()
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractActionController.php(83): Medicaments\Controller\MedicamentsController->createAction()
+#7 [internal function]: Zend\Mvc\Controller\AbstractActionController->onDispatch(Object(Zend\Mvc\MvcEvent))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#10 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(116): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#11 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/DispatchListener.php(113): Zend\Mvc\Controller\AbstractController->dispatch(Object(Zend\Http\PhpEnvironment\Request), Object(Zend\Http\PhpEnvironment\Response))
+#12 [internal function]: Zend\Mvc\DispatchListener->onDispatch(Object(Zend\Mvc\MvcEvent))
+#13 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#14 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#15 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(313): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#16 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#17 {main}

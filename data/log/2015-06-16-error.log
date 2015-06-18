@@ -1,0 +1,96 @@
+2015-06-16T21:34:16+02:00 CRIT (2): exception 'Zend\Mvc\Router\Exception\RuntimeException' with message 'Route with name "apteka" not found' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Router/Http/TreeRouteStack.php:317
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Navigation/Page/Mvc.php(260): Zend\Mvc\Router\Http\TreeRouteStack->assemble(Array, Array)
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/cms-ir/cms-ir/src/CmsIr/Dashboard/view/partial/dashboard-sidebar-nav.phtml(71): Zend\Navigation\Page\Mvc->getHref()
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Renderer/PhpRenderer.php(506): include('/media/wtk13/Re...')
+#3 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Helper/Partial.php(61): Zend\View\Renderer\PhpRenderer->render('partial/sidebar...', Array)
+#4 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Helper/Navigation/Menu.php(433): Zend\View\Helper\Partial->__invoke('partial/sidebar...', Array)
+#5 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Helper/Navigation/Menu.php(107): Zend\View\Helper\Navigation\Menu->renderPartial(NULL, 'partial/sidebar...')
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/cms-ir/cms-ir/src/CmsIr/Dashboard/view/layout/dashboard.phtml(47): Zend\View\Helper\Navigation\Menu->render()
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Renderer/PhpRenderer.php(506): include('/media/wtk13/Re...')
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(205): Zend\View\Renderer\PhpRenderer->render(Object(Zend\View\Model\ViewModel))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/View/Http/DefaultRenderingStrategy.php(103): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#10 [internal function]: Zend\Mvc\View\Http\DefaultRenderingStrategy->render(Object(Zend\Mvc\MvcEvent))
+#11 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#12 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('render', Object(Zend\Mvc\MvcEvent), Array)
+#13 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(352): Zend\EventManager\EventManager->trigger('render', Object(Zend\Mvc\MvcEvent))
+#14 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
+#15 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#16 {main}
+2015-06-16T21:36:50+02:00 CRIT (2): exception 'Zend\View\Exception\RuntimeException' with message 'Zend\View\Renderer\PhpRenderer::render: Unable to render template "pharmacy/pharmacy/list"; resolver could not resolve to a file' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Renderer/PhpRenderer.php:498
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(205): Zend\View\Renderer\PhpRenderer->render(Object(Zend\View\Model\ViewModel))
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(233): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(198): Zend\View\View->renderChildren(Object(Zend\View\Model\ViewModel))
+#3 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/View/Http/DefaultRenderingStrategy.php(103): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#4 [internal function]: Zend\Mvc\View\Http\DefaultRenderingStrateg$this->add(array(
+            'name'       => 'place_id',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'name' => 'NotEmpty',
+                    'options' => array(
+                        'messages' => array(
+                            NotEmpty::IS_EMPTY => 'Uzupełnij pole!'
+                        )
+                    )
+                ),
+            ),
+        ));y->render(Object(Zend\Mvc\MvcEvent))
+#5 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('render', Object(Zend\Mvc\MvcEvent), Array)
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(352): Zend\EventManager\EventManager->trigger('render', Object(Zend\Mvc\MvcEvent))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
+#9 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#10 {main}
+2015-06-16T21:37:16+02:00 CRIT (2): exception 'Zend\View\Exception\RuntimeException' with message 'Zend\View\Renderer\PhpRenderer::render: Unable to render template "pharmacy/pharmacy/list"; resolver could not resolve to a file' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Renderer/PhpRenderer.php:498
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(205): Zend\View\Renderer\PhpRenderer->render(Object(Zend\View\Model\ViewModel))
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(233): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(198): Zend\View\View->renderChildren(Object(Zend\View\Model\ViewModel))
+#3 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/View/Http/DefaultRenderingStrategy.php(103): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#4 [internal function]: Zend\Mvc\View\Http\DefaultRenderingStrategy->render(Object(Zend\Mvc\MvcEvent))
+#5 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('render', Object(Zend\Mvc\MvcEvent), Array)
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(352): Zend\EventManager\EventManager->trigger('render', Object(Zend\Mvc\MvcEvent))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
+#9 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#10 {main}
+2015-06-16T22:41:05+02:00 CRIT (2): exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'place_id' cannot be null' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/Adapter/Driver/Pdo/Statement.php:239
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/Adapter/Driver/Pdo/Statement.php(239): PDOStatement->execute()
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(291): Zend\Db\Adapter\Driver\Pdo\Statement->execute()
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(258): Zend\Db\TableGateway\AbstractTableGateway->executeInsert(Object(Zend\Db\Sql\Insert))
+#3 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Model/PharmacyTable.php(57): Zend\Db\TableGateway\AbstractTableGateway->insert(Array)
+#4 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Controller/PharmacyController.php(59): Pharmacy\Model\PharmacyTable->save(Object(Pharmacy\Model\Pharmacy))
+#5 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractActionController.php(83): Pharmacy\Controller\PharmacyController->createAction()
+#6 [internal function]: Zend\Mvc\Controller\AbstractActionController->onDispatch(Object(Zend\Mvc\MvcEvent))
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(116): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#10 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/DispatchListener.php(113): Zend\Mvc\Controller\AbstractController->dispatch(Object(Zend\Http\PhpEnvironment\Request), Object(Zend\Http\PhpEnvironment\Response))
+#11 [internal function]: Zend\Mvc\DispatchListener->onDispatch(Object(Zend\Mvc\MvcEvent))
+#12 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#13 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#14 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(313): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#15 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#16 {main}
+
+Next exception 'Zend\Db\Adapter\Exception\InvalidQueryException' with message 'Statement could not be executed (23000 - 1048 - Column 'place_id' cannot be null)' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/Adapter/Driver/Pdo/Statement.php:244
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(291): Zend\Db\Adapter\Driver\Pdo\Statement->execute()
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Db/TableGateway/AbstractTableGateway.php(258): Zend\Db\TableGateway\AbstractTableGateway->executeInsert(Object(Zend\Db\Sql\Insert))
+#2 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Model/PharmacyTable.php(57): Zend\Db\TableGateway\AbstractTableGateway->insert(Array)
+#3 /media/wtk13/Reszta/htdocs/grodzka/module/Pharmacy/src/Pharmacy/Controller/PharmacyController.php(59): Pharmacy\Model\PharmacyTable->save(Object(Pharmacy\Model\Pharmacy))
+#4 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractActionController.php(83): Pharmacy\Controller\PharmacyController->createAction()
+#5 [internal function]: Zend\Mvc\Controller\AbstractActionController->onDispatch(Object(Zend\Mvc\MvcEvent))
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(116): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/DispatchListener.php(113): Zend\Mvc\Controller\AbstractController->dispatch(Object(Zend\Http\PhpEnvironment\Request), Object(Zend\Http\PhpEnvironment\Response))
+#10 [internal function]: Zend\Mvc\DispatchListener->onDispatch(Object(Zend\Mvc\MvcEvent))
+#11 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#12 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#13 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(313): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#14 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#15 {main}
