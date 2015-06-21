@@ -47,6 +47,8 @@ return array(
                 'CmsIr\System\Controller\System' => array(
                     'createThumb'	=> 'guest',
                     'saveEditorImages'	=> 'guest',
+                    'settings'	=> 'superadmin',
+                    'mailConfig'	=> 'superadmin',
                 ),
                 'CmsIr\File\Controller\Gallery' => array(
                     'all'	=> 'superadmin',

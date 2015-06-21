@@ -411,3 +411,9 @@ usuwanie-lekow:
   route: medicaments/delete
   visible_in_primary: false
   parent_id: leki
+konfiguracja-maila:
+  name: konfiguracja-maila
+  label: Ustawienia E-mail
+  route: mail-config
+  class: fa fa-cog
+  access: 4

@@ -341,11 +341,13 @@ class PageController extends AbstractActionController
 
     public function sendConfirmationEmail($email, $confirmationCode)
     {
-        $transport = $this->getServiceLocator()->get('mail.transport');
+        $transport = $this->getServiceLocator()->get('mail.transport')->findMailConfig();
+        $from = $this->getServiceLocator()->get('mail.transport')->findFromMail();
+
         $message = new Message();
         $this->getRequest()->getServer();
         $message->addTo($email)
-            ->addFrom('mailer@web-ir.pl')
+            ->addFrom($from)
             ->setEncoding('UTF-8')
             ->setSubject('Prosimy o potwierdzenie subskrypcji!')
             ->setBody("W celu potwierdzenia subskrypcji kliknij w link => " .
@@ -440,11 +442,13 @@ class PageController extends AbstractActionController
             $body = new MimeMessage();
             $body->setParts(array($html));
 
-            $transport = $this->getServiceLocator()->get('mail.transport');
+            $transport = $this->getServiceLocator()->get('mail.transport')->findMailConfig();
+            $from = $this->getServiceLocator()->get('mail.transport')->findFromMail();
+
             $message = new Message();
             $this->getRequest()->getServer();
             $message->addTo('idzikkrzysztof91@gmail.com')
-                ->addFrom('mailer@web-ir.pl')
+                ->addFrom($from)
                 ->setEncoding('UTF-8')
                 ->setSubject('Wiadomość z formularza kontaktowego')
                 ->setBody($body);
