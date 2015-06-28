@@ -1,107 +1,80 @@
-<?php /* @var $news \CmsIr\Post\Model\Post */?>
-<?php echo $this->partial('partial/breadcrumbs', array('breadcrumbs' => array('/' => 'Strona główna', '/aktualnosci' => 'Aktualności', $news->getName()))); ?>
+<?php /* @var $news \CmsIr\Post\Model\Post */ ?>
 
-<div class="container">
-<div class="row">
-    <div class="col-sm-8 col-md-9">
+<section class="sub-page-banner text-center" data-stellar-background-ratio="0.3">
 
-        <!-- BLOG LIST SECTION -->
-        <div class="section">
-            <h4 class="light-font line-height-28 margin-top-50">
-                <p class="small">
-                    <i class="fa fa-clock-o"></i> <b><?php echo $news->getDate(); ?></b>
-                </p>
-                <?php echo $news->getText() ?>
-            </h4>
-        </div>
-
-        <?php
-        $files = $news->getFiles();
-        ?>
-        <?php if(count($files) > 0): ?>
-                <!-- BEGIN MAGNIFIC POPUP GALLERY -->
-                <div class="zoom-gallery">
-                    <h4 class="small-title">Galeria zdjęć</h4>
-                    <div class="magnific-popup-wrap">
-                        <div class="row">
-                            <?php foreach($files as $file): ?>
-                                <?php
-                                $fileName = $file->getFilename();
-                                ?>
-                                <div class="col-xs-6 col-md-3">
-                                    <a class="zooming" href="/files/post/<?php echo $fileName; ?>">
-                                        <img src="/files/post/<?php echo $fileName; ?>" alt="Image" class="mfp-fade item-gallery img-responsive">
-                                    </a>
-                                </div><!-- /.col-xs-6 .col-md-3 -->
-                            <?php endforeach; ?>
-                        </div><!-- /row -->
-                    </div><!-- /.magnific-popup-wrap -->
-                </div><!-- /.the-box -->
-                <!-- END MAGNIFIC POPUP GALLERY -->
-        <?php endif; ?>
-
-        <div class="fb-comments" data-href="http://kuba.vmadmin.vdl.pl/<?php echo $this->url('viewNews', array('slug' => $news->getUrl())); ?>" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
+    <div class="container">
+        <h1 class="entry-title">Aktualności</h1>
+        <p>Czytaj najnowsze informacje, bądź na bieżąco z promocjami oraz organizowanymi konkursami w naszych aptekach</p>
     </div>
+</section>
 
+<div class="sub-page-content">
 
-    <div class="col-sm-4 col-md-3">
-        <?php if(!empty($events)):?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 blog-wrapper clearfix">
+                <h2 class="bordered light"><?php echo $news->getName() ?></h2>
+                <article class="blog-item blog-full-width blog-detail">
+                    <?php $main = $news->getFilenameMain() ?>
 
-        <!-- BEGIN SIDEBAR -->
-        <div class="section sidebar">
+                    <?php if(!empty($main)): ?>
 
-            <!-- Begin Recent post -->
-            <div class="panel panel-no-border panel-sidebar">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Ostatnie wydarzenia</h3>
-                </div>
+                        <div class="blog-thumbnail">
+                            <img alt="" src="<?php echo $this->basePath() ?>/files/post/<?php echo $main ?>">
+                        </div>
 
-                <?php
-                    $countEvents = count($events);
-                    if($countEvents > 4) $max = 5; else $max = $countEvents;
-                ?>
+                    <?php endif ?>
 
-                <ul class="media-list">
-                    <?php for($i=0; $i<$max; $i++): ?>
-                        <?php
-                        $event = $events[$i];
-                        $files = $event->getFiles();
-                        $firstFile = reset($files);
-                        $fileName = $firstFile->getFilename();
+                    <div class="blog-content">
 
-                        $title = $event->getName();
-                        $url = $event->getUrl();
-                        $text = strip_tags($event->getText());
-                        $date = $event->getDate();
-                        if(strlen($text) > 50) {
-                            $text = substr($text, 0, 50) . '..';
-                        }
-                        ?>
-                        <li class="media">
-                            <a class="pull-left" href="<?php echo $this->url('viewEvent', array('slug' => $url)); ?>">
-                                <img class="media-object img-post" src="/files/post/<?php echo $fileName; ?>" alt="Image">
-                            </a>
+                        <?php echo $news->getText() ?>
 
-                            <div class="media-body">
-                                <p><a href="<?php echo $this->url('viewEvent', array('slug' => $url)); ?>"> <?php echo $text; ?> </a></p>
-                                <p class="small text-info"><?php echo $date; ?></p>
+                    </div>
+
+                    <div class="portfolio">
+
+                        <?php $files = $news->getFiles() ?>
+                        <?php $files = array_chunk($files, 2) ?>
+
+                        <?php foreach($files as $f): ?>
+
+                            <div class="row">
+
+                                <?php /* @var $file \CmsIr\File\Model\File */ ?>
+                                <?php foreach($f as $file): ?>
+
+                                    <article class="entry doctors col-sm-6">
+                                        <div class="gallery-thumb">
+                                            <span class="overlay"></span>
+                                            <a href="<?php echo $this->basePath() ?>/files/post/<?php echo $file->getFilename() ?>" data-rel="prettyPhoto" class="link-preety"></a>
+                                            <img src="<?php echo $this->basePath() ?>/files/post/<?php echo $file->getFilename() ?>" alt="" class="img-responsive"/>
+                                        </div>
+                                    </article>
+
+                                <?php endforeach ?>
+
                             </div>
-                        </li>
-                    <?php endfor; ?>
-                </ul>
+
+                        <?php endforeach ?>
+
+                    </div>
+
+                    <div class="share-post clearfix">
+                        <label>Podziel się wpisem</label>
+                        <ul class="social-rounded">
+                            <li><a href="http://www.facebook.com/share.php?u=<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $this->url('viewNews', array('slug' => $news->getUrl())); ?>/&title=<?php echo $news->getName(); ?>"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="http://twitter.com/home?status=<?php echo $news->getName(); ?>+<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $this->url('viewNews', array('slug' => $news->getUrl())); ?>"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://plus.google.com/share?url=<?php echo 'http://' .  $_SERVER['HTTP_HOST'] . $this->url('viewNews', array('slug' => $news->getUrl())); ?>"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+
+                </article>
             </div>
+
+            <?php echo $this->partial('partial/sidebar') ?>
+
         </div>
-        <?php endif; ?>
     </div>
 
-</div>
-</div>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&appId=696702883740961&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    <div class="clr"></div>
+</div><!--end sub-page-content-->

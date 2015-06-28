@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <?php echo $this->headTitle($this->translate("Demo web-ir website")) ?>
+    <?php echo $this->headTitle($this->translate("apteka Grodzka")) ?>
 
     <?php echo $this->headMeta()
         ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -13,64 +13,116 @@
     <!-- Le styles -->
     <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
         // MAIN CSS (REQUIRED ALL PAGE)
-        ->prependStylesheet($this->basePath() . '/css/main.css')
-        ->prependStylesheet($this->basePath() . '/css/style-responsive-frontend.css')
-        ->prependStylesheet($this->basePath() . '/css/style-frontend.css')
-        ->prependStylesheet($this->basePath() . '/css/font-awesome.min.css')
-
-
-        ->prependStylesheet($this->basePath() . '/css/owl.transitions.css')
-        ->prependStylesheet($this->basePath() . '/css/owl.theme.css')
-        ->prependStylesheet($this->basePath() . '/css/owl.carousel.css')
-        ->prependStylesheet($this->basePath() . '/css/magnific-popup.css')
-        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+        ->appendStylesheet($this->basePath() . '/css/blue.css')
+        ->appendStylesheet($this->basePath() . '/css/medicom.css')
+        ->appendStylesheet($this->basePath() . '/css/bootstrap.css')
+        ->appendStylesheet($this->basePath() . '/css/jquery-ui-1.10.3.custom.css')
+        ->appendStylesheet($this->basePath() . '/css/owl.carousel.css')
+        ->appendStylesheet($this->basePath() . '/css/uniform.default.css')
+        ->appendStylesheet($this->basePath() . '/css/revolution_style.css')
+        ->appendStylesheet($this->basePath() . '/css/settings.css')
+        ->appendStylesheet($this->basePath() . '/css/reset.css')
+        ->appendStylesheet($this->basePath() . '/css/prettyPhoto.css')
+        ->appendStylesheet($this->basePath() . '/css/jcarousel-skin.css')
     ?>
     <!-- Scripts -->
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
     <?php echo $this->headScript()
-        ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-        ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',));
+        ->appendFile($this->basePath() . '/js/jquery.js', 'text/javascript')
+        ->appendFile($this->basePath() . '/js/jquery.themepunch.plugins.min.js', 'text/javascript')
+        ->appendFile($this->basePath() . '/js/jquery.themepunch.revolution.min.js', 'text/javascript')
     ?>
 
 </head>
-<body class="tooltips">
-<?php echo $this->partial('partial/layout/header'); ?>
-<?php echo $content; ?>
-<?php echo $this->partial('partial/layout/footer'); ?>
+<body>
+    <div id="wrapper">
 
-<?php echo $this->partial('partial/newsletter-modal'); ?>
+        <?php echo $this->partial('partial/layout/header'); ?>
 
-<!-- BEGIN BACK TO TOP BUTTON -->
-<div id="back-top">
-    <i class="fa fa-chevron-up"></i>
-</div>
-<!-- END BACK TO TOP -->
+        <?php echo $content; ?>
 
-<?php echo $this->inlineScript()
-    ->prependFile($this->basePath() . '/js/apps-frontend.js')
-    ->prependFile($this->basePath() . '/js/page.js')
-    ->prependFile($this->basePath() . '/js/retina.min.js')
-    ->prependFile($this->basePath() . '/js/jquery.backstretch.min.js')
-    ->prependFile($this->basePath() . '/js/jquery.magnific-popup.min.js')
-    ->prependFile($this->basePath() . '/js/owl.carousel.min.js')
-    ->prependFile($this->basePath() . '/js/jquery.mixitup.js')
-    ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-    ->prependFile($this->basePath() . '/js/jquery.min.js')
-?>
-<!-- Piwik -->
-<script type="text/javascript">
-    var _paq = _paq || [];
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
-    (function() {
-        var u="<?php echo $piwik; ?>";
-        _paq.push(['setTrackerUrl', u+'piwik.php']);
-        _paq.push(['setSiteId', 1]);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-    })();
-</script>
-<noscript><p><img src="<?php echo $piwik; ?>/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+        <?php echo $this->partial('partial/layout/footer'); ?>
+
+    </div>
+
+    <script type="text/javascript">
+
+        var revapi;
+
+        jQuery(document).ready(function() {
+
+            revapi = jQuery('.tp-banner').revolution(
+                {
+                    delay:9000,
+                    startwidth:1170,
+                    startheight:682,
+                    hideThumbs:200,
+                    fullWidth:"on",
+                    forceFullWidth:"on"
+                });
+
+        });	//ready
+
+    </script>
+
+    <?php echo $this->inlineScript()
+        ->appendFile($this->basePath() . '/js/bootstrap-front.min.js')
+        ->appendFile($this->basePath() . '/js/carousel.js')
+        ->appendFile($this->basePath() . '/js/jquery.stellar.js')
+        ->appendFile($this->basePath() . '/js/jquery-ui-1.10.3.custom.js')
+        ->appendFile($this->basePath() . '/js/owl.carousel.js')
+        ->appendFile($this->basePath() . '/js/counter.js')
+        ->appendFile($this->basePath() . '/js/waypoints.js')
+        ->appendFile($this->basePath() . '/js/jquery.uniform.js')
+        ->appendFile($this->basePath() . '/js/jquery.prettyPhoto.js')
+        ->appendFile($this->basePath() . '/js/forms-validation.js')
+        ->appendFile($this->basePath() . '/js/jquery.jcarousel.min.js')
+    ?>
+
+    <script type="text/javascript">
+
+        $(function($){
+            // parallaax
+            $.stellar({
+                horizontalScrolling: false,
+                verticalOffset: 0
+            });
+
+            //date picker
+            $("#datepicker").datepicker({
+                inline: true
+            });
+            //owl carousel
+            $("#medicom-carousel, #medicom-carousel-1").owlCarousel({
+                navigation : true
+            });
+
+            //form styling
+            $("select").uniform();
+
+            //preetyphotoeffect
+            $('a[data-gal]').each(function() {
+                $(this).attr('rel', $(this).data('gal'));
+            });
+            $("a[data-rel^='prettyPhoto']").prettyPhoto({animationSpeed:'slow',theme:'light_square',slideshow:false,overlay_gallery: false,social_tools:false,deeplinking:false});
+
+            //on click show content
+            $('.link-more').click(function(e) {
+                $('.content-sec').slideDown(1000);
+            });
+            //on click hide content
+            $('.cross').click(function(e) {
+                $('.content-sec').slideUp(1000);
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>

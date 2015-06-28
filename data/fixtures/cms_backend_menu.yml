@@ -411,6 +411,20 @@ usuwanie-lekow:
   route: medicaments/delete
   visible_in_primary: false
   parent_id: leki
+galeria:
+  name: galeria
+  label: Gazetka
+  route: gallery-main
+  visible_in_primary: true
+  class: fa fa-file-image-o
+  access: 4
+galeria-edycja:
+  name: galeria-edycja
+  label: Edycja gazetki
+  route: gallery/edit
+  parent_id: galeria
+  visible_in_primary: true
+  params: "'gallery_id' => '1'"
 konfiguracja-maila:
   name: konfiguracja-maila
   label: Ustawienia E-mail

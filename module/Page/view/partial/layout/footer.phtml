@@ -1,18 +1,100 @@
-<!-- BEGIN FOOTER -->
-<footer class="light-color">
+<div class="colourfull-row"></div>
+<footer id="footer" class="light">
     <div class="container">
         <div class="row">
-            <?php echo $this->partial('partial/layout/footer-about'); ?>
-            <?php echo $this->partial('partial/layout/footer-contact'); ?>
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <h4><span>Apteka Grodzka</span></h4>
+                    <?php echo $this->menuHelper()->renderSecondMenu($menu); ?>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <h4><span>Newsletter</span></h4>
+                    <div class="newsletter clearfix">
+                        <i class="fa fa-envelope"></i>
+                        <p class="newsletter-text">Jeśli chcesz być na bieżąco z naszymi aktualnościami i promocjami w naszych aptekach zapisz się do naszego newslettera.</p>
+                        <div class="error" id="error_news" style="display:none;"></div>
+                        <div class="success" id="message-news" style="display:none;">Dziękujemy! Zostałeś/aś poprawnie zapisany/a do newslettera</div>
+                        <form name="newsletter_form" id="newsletter_form" method="post">
+                            <input type="text" name="news_name" id="news_name" placeholder="Imię">
+                            <input type="email" name="news_email_address" id="news_email_address" placeholder="Adres email">
+                            <input type="submit" value="Subskrybuj" class="btn btn-default btn-rounded" id="newsletter-button">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <h4><span>Polecane miejsca</span></h4>
+                    <?php echo $polecane ?>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-widget">
+                    <h4><span>Kontakt z nami</span></h4>
+                    <p>Jeśli masz pytania dotyczące współpracy bądź chcesz skontaktować się z menadżerem aptek:</p>
+                    <div class="contact-widget">
+                        <i class="fa fa-home"></i><p>ul. Rynek 28 <br/>64-000 Kościan</p>
+                        <i class="fa fa-globe"></i><p><a href="http://www.aptekagrodzka.pl">www.aptekagrodzka.pl</a></p>
+                        <i class="fa fa-mobile"></i><p class="phone-number">65 511 70 87</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="copyright">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-8 text-right"> Copyright &copy; 2015 Apteka Grodzka. All right reserved.</div>
+                <div class="col-sm-4 text-right">Designed by
+                    <a href="#">DNA Studio.</a>
+                </div>
 
+            </div>
+        </div>
+    </div>
 
-            <div class="clearfix visible-sm"></div>
-            <?php echo $this->partial('partial/layout/footer-newsletter'); ?>
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</footer><!-- /.section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"><a href="#."><img src="/images/footer-logo.png" alt="" title="Medicom Logo"></a></div>
+            <div class="col-md-9">
 
-<?php echo $this->partial('partial/layout/footer-terms'); ?>
+                <?php echo $ciastka ?>
 
-<!-- END FOOTER -->
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    $(function () {
+        $('#newsletter-button').click(function (e) {
+            e.preventDefault();
+            var email = $('input[name="news_email_address"]').val();
+
+            if(email.length == 0){
+                $('input[name="news_email_address"]').css('border-color', 'red');
+            } else {
+                $('input[name="news_email_address"]').css('border-color', '#F4F4F4');
+            }
+
+            if(email.length > 0 ){
+                $.ajax({
+                    type: "POST",
+                    url: "/save-new-subscriber",
+                    dataType : 'json',
+                    data: {
+                        email: email
+                    },
+                    success: function(json)
+                    {
+                        $('input[name="news_email_address"]').val('');
+                        $('#message-news').css('display', 'block');
+                    }
+                });
+            }
+        });
+    });
+</script>

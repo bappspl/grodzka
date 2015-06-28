@@ -2,7 +2,10 @@
 
 namespace Page\Controller;
 
+use CmsIr\Page\Model\Page;
 use CmsIr\Post\Model\Post;
+use Medicaments\Model\MedicamentsTable;
+use Zend\Db\Sql\Predicate\IsNotNull;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
@@ -23,38 +26,40 @@ class PageController extends AbstractActionController
     public function homeAction()
     {
         $this->layout('layout/home');
-        $config = $this->getServiceLocator()->get('Config');
-        $piwik = $config['piwik'];
-        $this->layout()->piwik = $piwik;
 
         $slider = $this->getSliderService()->findOneBySlug('slider-glowny');
         $items = $slider->getItems();
 
-//        $slider = $this->getSliderService()->findOneBySlug('slide-glowny');
+        $pharmacy = $this->getPharmacyTable()->getAll();
 
-        $aboutPage = $this->getPageService()->findOneBySlug('o-nas');
-        $text = strip_tags($aboutPage->getContent());
-        if(strlen($text) > 230) {
-            $text = substr($text, 0, 230) . '..';
-        }
-        $this->layout()->aboutContent = $text;
+        $users = $this->getUsersService()->findAllWithPhotoByRoleId(2);
 
-        $activeStatus = $this->getStatusTable()->getOneBy(array('slug' => 'active'));
-        $activeStatusId = $activeStatus->getId();
+        $news = $this->getPostTable()->getBy(array('status_id' => 1, new IsNotNull('filename_main')), 'date DESC', 4);
+        $news = array_values($news);
 
-        $events = $this->getPostTable()->getBy(array('status_id' => $activeStatusId, 'category' => 'event'));
-        foreach($events as $event)
+        foreach($news as $n)
         {
-            $eventFiles = $this->getPostFileTable()->getOneBy(array('post_id' => $event->getId()));
-            $event->setFiles($eventFiles);
+            $date = $n->getDate();
+            $newDate = date('d-M-Y', strtotime($date));
+            $n->setDate($newDate);
         }
 
-        $planning = $this->getPostTable()->getBy(array('status_id' => $activeStatusId, 'category' => 'planning'));
+        $newspapperFiles = $this->getFileTable()->getBy(array('entity_id' => 1, 'entity_type' => 'gallery'));
+        $newspapperFiles = array_values($newspapperFiles);
+
+        $medicaments = $this->getMedicamentsTable()->getAll();
+        $medicaments = array_values($medicaments);
+
+        $newspaper = $this->getFileTable()->getOneBy(array('id' => 10));
 
         $viewParams = array();
         $viewParams['items'] = $items;
-        $viewParams['banners'] = $events;
-        $viewParams['planning'] = $planning;
+        $viewParams['pharmacy'] = $pharmacy;
+        $viewParams['users'] = $users;
+        $viewParams['news'] = $news;
+        $viewParams['newspapperFiles'] = $newspapperFiles;
+        $viewParams['medicaments'] = $medicaments;
+        $viewParams['newspaper'] = $newspaper;
         $viewModel = new ViewModel();
         $viewModel->setVariables($viewParams);
         return $viewModel;
@@ -63,12 +68,6 @@ class PageController extends AbstractActionController
     public function viewPageAction()
     {
         $this->layout('layout/home');
-        $aboutPage = $this->getPageService()->findOneBySlug('o-nas');
-        $text = strip_tags($aboutPage->getContent());
-        if(strlen($text) > 230) {
-            $text = substr($text, 0, 230) . '..';
-        }
-        $this->layout()->aboutContent = $text;
 
         $slug = $this->params('slug');
 
@@ -77,16 +76,43 @@ class PageController extends AbstractActionController
             $this->getResponse()->setStatusCode(404);
         }
 
+        $newspapperFiles = $this->getFileTable()->getBy(array('entity_id' => 1, 'entity_type' => 'gallery'));
+        $newspapperFiles = array_values($newspapperFiles);
+
+        $medicaments = $this->getMedicamentsTable()->getAll();
+        $medicaments = array_values($medicaments);
+
+        $users = $users = $this->getUsersService()->findAllWithPhotoByRoleId(2);
+        $users = array_values($users);
+
+        $pharmacy = $this->getPharmacyTable()->getAll();
+        $pharmacy = array_values($pharmacy);
+
+        foreach($pharmacy as $p)
+        {
+            $place = $this->getPlaceTable()->getOneBy(array('id' => $p->getPlaceId()));
+            $p->setPlace($place);
+        }
+
+        $newspaper = $this->getFileTable()->getOneBy(array('id' => 10));
+
         $viewParams = array();
         $viewParams['page'] = $page;
+        $viewParams['newspapperFiles'] = $newspapperFiles;
+        $viewParams['medicaments'] = $medicaments;
+        $viewParams['users'] = $users;
+        $viewParams['pharmacy'] = $pharmacy;
+        $viewParams['newspaper'] = $newspaper;
+
         $viewModel = new ViewModel();
         $viewModel->setVariables($viewParams);
 
-        if($slug != 'kontakt')
-        {
-            return $viewModel;
-        } else {
+        if($slug == 'kontakt') {
             return $viewModel->setTemplate('page/page/contact.phtml');
+        } elseif($slug == 'nasi-specjalisci') {
+            return $viewModel->setTemplate('page/page/nasi-specjalisci.phtml');
+        } else {
+            return $viewModel;
         }
 
     }
@@ -94,52 +120,38 @@ class PageController extends AbstractActionController
     public function newsListAction()
     {
         $this->layout('layout/home');
-        $aboutPage = $this->getPageService()->findOneBySlug('o-nas');
-        $text = strip_tags($aboutPage->getContent());
-        if(strlen($text) > 230) {
-            $text = substr($text, 0, 230) . '..';
-        }
-        $this->layout()->aboutContent = $text;
 
         $activeStatus = $this->getStatusTable()->getOneBy(array('slug' => 'active'));
         $activeStatusId = $activeStatus->getId();
 
-        $allNews = $this->getPostTable()->getWithPaginationBy(new Post(), array('status_id' => $activeStatusId, 'category' => 'news'));
-
-        /* @var $news \CmsIr\Post\Model\Post */
-
-        $page = $this->params()->fromRoute('number') ? (int) $this->params()->fromRoute('number') : 1;
-        $allNews->setCurrentPageNumber($page);
-        $allNews->setItemCountPerPage(2);
-
-        $test = array();
+        $allNews = $this->getPostTable()->getBy(array('status_id' => $activeStatusId, 'category' => 'news'), 'id DESC');
 
         foreach($allNews as $news)
         {
             $newsId = $news->getId();
-            $newsFiles = $this->getPostFileTable()->getBy(array('post_id' => $newsId));
+            $newsFiles = $this->getFileTable()->getBy(array('entity_id' => $newsId, 'entity_type' => 'Post'));
 
             $news->setFiles($newsFiles);
-            $test[] = $news;
 
+            $date = $news->getDate();
+            $newDate = date('d-M-Y', strtotime($date));
+            $news->setDate($newDate);
         }
 
-        $allEvent = $this->getPostTable()->getBy(array('status_id' => $activeStatusId, 'category' => 'event'), 'date DESC');
+        $newspapperFiles = $this->getFileTable()->getBy(array('entity_id' => 1, 'entity_type' => 'gallery'));
+        $newspapperFiles = array_values($newspapperFiles);
 
-        /* @var $event \CmsIr\Post\Model\Post */
+        $medicaments = $this->getMedicamentsTable()->getAll();
+        $medicaments = array_values($medicaments);
 
-        foreach($allEvent as $event)
-        {
-            $eventsId = $event->getId();
-            $eventFiles = $this->getPostFileTable()->getBy(array('post_id' => $eventsId));
-
-            $event->setFiles($eventFiles);
-        }
+        $newspaper = $this->getFileTable()->getOneBy(array('id' => 10));
 
         $viewParams = array();
-        $viewParams['news'] = $test;
-        $viewParams['events'] = array_values($allEvent);
-        $viewParams['paginator'] = $allNews;
+        $viewParams['news'] = $allNews;
+        $viewParams['newspapperFiles'] = $newspapperFiles;
+        $viewParams['medicaments'] = $medicaments;
+        $viewParams['newspaper'] = $newspaper;
+
         $viewModel = new ViewModel();
         $viewModel->setVariables($viewParams);
         return $viewModel;
@@ -148,39 +160,28 @@ class PageController extends AbstractActionController
     public function viewNewsAction()
     {
         $this->layout('layout/home');
-        $aboutPage = $this->getPageService()->findOneBySlug('o-nas');
-        $text = strip_tags($aboutPage->getContent());
-        if(strlen($text) > 230) {
-            $text = substr($text, 0, 230) . '..';
-        }
-        $this->layout()->aboutContent = $text;
 
         $slug = $this->params('slug');
 
         /* @var $news \CmsIr\Post\Model\Post */
         $news = $this->getPostTable()->getOneBy(array('url' => $slug));
         $newsId = $news->getId();
-        $newsFiles = $this->getPostFileTable()->getBy(array('post_id' => $newsId));
+        $newsFiles = $this->getFileTable()->getBy(array('entity_id' => $newsId, 'entity_type' => 'Post'));
         $news->setFiles($newsFiles);
 
-        $activeStatus = $this->getStatusTable()->getOneBy(array('slug' => 'active'));
-        $activeStatusId = $activeStatus->getId();
+        $newspapperFiles = $this->getFileTable()->getBy(array('entity_id' => 1, 'entity_type' => 'gallery'));
+        $newspapperFiles = array_values($newspapperFiles);
 
-        $allEvent = $this->getPostTable()->getBy(array('status_id' => $activeStatusId, 'category' => 'event'), 'date DESC');
+        $medicaments = $this->getMedicamentsTable()->getAll();
+        $medicaments = array_values($medicaments);
 
-        /* @var $event \CmsIr\Post\Model\Post */
-
-        foreach($allEvent as $event)
-        {
-            $eventsId = $event->getId();
-            $eventFiles = $this->getPostFileTable()->getBy(array('post_id' => $eventsId));
-
-            $event->setFiles($eventFiles);
-        }
+        $newspaper = $this->getFileTable()->getOneBy(array('id' => 10));
 
         $viewParams = array();
         $viewParams['news'] = $news;
-        $viewParams['events'] = array_values($allEvent);
+        $viewParams['newspapperFiles'] = $newspapperFiles;
+        $viewParams['medicaments'] = $medicaments;
+        $viewParams['newspaper'] = $newspaper;
         $viewModel = new ViewModel();
         $viewModel->setVariables($viewParams);
         return $viewModel;
@@ -359,12 +360,12 @@ class PageController extends AbstractActionController
     public function confirmationNewsletterAction()
     {
         $this->layout('layout/home');
-        $aboutPage = $this->getPageService()->findOneBySlug('o-nas');
-        $text = strip_tags($aboutPage->getContent());
-        if(strlen($text) > 230) {
-            $text = substr($text, 0, 230) . '..';
-        }
-        $this->layout()->aboutContent = $text;
+//        $aboutPage = $this->getPageService()->findOneBySlug('o-nas');
+//        $text = strip_tags($aboutPage->getContent());
+//        if(strlen($text) > 230) {
+//            $text = substr($text, 0, 230) . '..';
+//        }
+//        $this->layout()->aboutContent = $text;
 
         $request = $this->getRequest();
         $code = $this->params()->fromRoute('code');
@@ -429,15 +430,19 @@ class PageController extends AbstractActionController
 
         if ($request->isPost()) {
             $name = $request->getPost('name');
+            $surname = $request->getPost('surname');
             $email = $request->getPost('email');
             $text = $request->getPost('text');
+            $phone = $request->getPost('phone');
 
-            $htmlMarkup = "Imię i Nazwisko: " . $name . "<br>" .
+            $htmlMarkup = "Imię i Nazwisko: " . $name .  ' ' . $surname . "<br>" .
+                "Telefon: " . $phone . "<br>" .
                 "Email: " . $email . "<br>" .
                 "Treść: " . $text;
 
             $html = new MimePart($htmlMarkup);
             $html->type = "text/html";
+            $html->charset = 'utf-8';
 
             $body = new MimeMessage();
             $body->setParts(array($html));
@@ -447,7 +452,7 @@ class PageController extends AbstractActionController
 
             $message = new Message();
             $this->getRequest()->getServer();
-            $message->addTo('idzikkrzysztof91@gmail.com')
+            $message->addTo('biuro@web-ir.pl')
                 ->addFrom($from)
                 ->setEncoding('UTF-8')
                 ->setSubject('Wiadomość z formularza kontaktowego')
@@ -515,5 +520,45 @@ class PageController extends AbstractActionController
     public function getPostFileTable()
     {
         return $this->getServiceLocator()->get('CmsIr\Post\Model\PostFileTable');
+    }
+
+    /**
+     * @return \Pharmacy\Model\PharmacyTable
+     */
+    public function getPharmacyTable()
+    {
+        return $this->getServiceLocator()->get('Pharmacy\Model\PharmacyTable');
+    }
+
+    /**
+     * @return \CmsIr\Users\Service\UsersService
+     */
+    public function getUsersService()
+    {
+        return $this->getServiceLocator()->get('CmsIr\Users\Service\UsersService');
+    }
+
+    /**
+     * @return \CmsIr\File\Model\FileTable
+     */
+    public function getFileTable()
+    {
+        return $this->getServiceLocator()->get('CmsIr\File\Model\FileTable');
+    }
+
+    /**
+     * @return \Medicaments\Model\MedicamentsTable
+     */
+    public function getMedicamentsTable()
+    {
+        return $this->getServiceLocator()->get('Medicaments\Model\MedicamentsTable');
+    }
+
+    /**
+     * @return \CmsIr\Place\Model\PlaceTable
+     */
+    public function getPlaceTable()
+    {
+        return $this->getServiceLocator()->get('CmsIr\Place\Model\PlaceTable');
     }
 }

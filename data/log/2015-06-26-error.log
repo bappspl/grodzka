@@ -1,0 +1,35 @@
+2015-06-26T17:33:21+02:00 CRIT (2): exception 'Zend\ServiceManager\Exception\ServiceNotFoundException' with message 'Zend\ServiceManager\ServiceManager::get was unable to fetch or create an instance for CmsIr\Post\Model\FileTable' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/ServiceManager/ServiceManager.php:550
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/module/Page/src/Page/Controller/PageController.php(566): Zend\ServiceManager\ServiceManager->get('CmsIr\\Post\\Mode...')
+#1 /media/wtk13/Reszta/htdocs/grodzka/module/Page/src/Page/Controller/PageController.php(45): Page\Controller\PageController->getFileTable()
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractActionController.php(83): Page\Controller\PageController->homeAction()
+#3 [internal function]: Zend\Mvc\Controller\AbstractActionController->onDispatch(Object(Zend\Mvc\MvcEvent))
+#4 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#5 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Controller/AbstractController.php(116): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/DispatchListener.php(113): Zend\Mvc\Controller\AbstractController->dispatch(Object(Zend\Http\PhpEnvironment\Request), Object(Zend\Http\PhpEnvironment\Response))
+#8 [internal function]: Zend\Mvc\DispatchListener->onDispatch(Object(Zend\Mvc\MvcEvent))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#10 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#11 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(313): Zend\EventManager\EventManager->trigger('dispatch', Object(Zend\Mvc\MvcEvent), Object(Closure))
+#12 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#13 {main}
+2015-06-26T18:32:42+02:00 CRIT (2): exception 'Zend\ServiceManager\Exception\ServiceNotFoundException' with message 'Zend\View\HelperPluginManager::get was unable to fetch or create an instance for route' in /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/ServiceManager/ServiceManager.php:550
+Stack trace:
+#0 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/ServiceManager/AbstractPluginManager.php(103): Zend\ServiceManager\ServiceManager->get('route', true)
+#1 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Renderer/PhpRenderer.php(377): Zend\ServiceManager\AbstractPluginManager->get('route', NULL)
+#2 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Renderer/PhpRenderer.php(396): Zend\View\Renderer\PhpRenderer->plugin('route')
+#3 /media/wtk13/Reszta/htdocs/grodzka/module/Page/view/page/page/home.phtml(321): Zend\View\Renderer\PhpRenderer->__call('route', Array)
+#4 /media/wtk13/Reszta/htdocs/grodzka/module/Page/view/page/page/home.phtml(321): Zend\View\Renderer\PhpRenderer->route('home')
+#5 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/Renderer/PhpRenderer.php(506): include('/media/wtk13/Re...')
+#6 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(205): Zend\View\Renderer\PhpRenderer->render(Object(Zend\View\Model\ViewModel))
+#7 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(233): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#8 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/View/View.php(198): Zend\View\View->renderChildren(Object(Zend\View\Model\ViewModel))
+#9 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/View/Http/DefaultRenderingStrategy.php(103): Zend\View\View->render(Object(Zend\View\Model\ViewModel))
+#10 [internal function]: Zend\Mvc\View\Http\DefaultRenderingStrategy->render(Object(Zend\Mvc\MvcEvent))
+#11 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(468): call_user_func(Array, Object(Zend\Mvc\MvcEvent))
+#12 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/EventManager/EventManager.php(207): Zend\EventManager\EventManager->triggerListeners('render', Object(Zend\Mvc\MvcEvent), Array)
+#13 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(352): Zend\EventManager\EventManager->trigger('render', Object(Zend\Mvc\MvcEvent))
+#14 /media/wtk13/Reszta/htdocs/grodzka/vendor/zendframework/zendframework/library/Zend/Mvc/Application.php(327): Zend\Mvc\Application->completeRequest(Object(Zend\Mvc\MvcEvent))
+#15 /media/wtk13/Reszta/htdocs/grodzka/public/index.php(17): Zend\Mvc\Application->run()
+#16 {main}

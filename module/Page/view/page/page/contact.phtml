@@ -1,48 +1,208 @@
-<?php /* @var $page \CmsIr\Page\Model\Page */?>
-<?php echo $this->partial('partial/breadcrumbs', array('breadcrumbs' => array('/' => 'Strona główna', $page->getName()))); ?>
+<section class="sub-page-banner text-center" data-stellar-background-ratio="0.3" style="background-image: url(/images/kontakt.jpg);">
 
-<div class="container">
-    <div class="row">
-        <!-- BLOG LIST SECTION -->
-        <div class="col-sm-12">
-            <div class="section">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <?php echo $page->getContent(); ?>
+    <div class="container">
+        <h1 class="entry-title">Kontakt</h1>
+        <p>Sprawdź numer telefonu bądź sprawdź jak do nas trafić.</p>
+    </div>
+</section>
 
-                        <section id="cd-google-map">
-                            <div id="google-container"></div>
-                            <div id="cd-zoom-in"></div>
-                            <div id="cd-zoom-out"></div>
-                        </section>
+<?php if(!empty($pharmacy)): ?>
+
+    <section class="meet-the-doctors no-bg-img team-carousel">
+        <div class="container">
+            <h2 class="light bordered">Nasze <span>Apteki</span></h2>
+            <div id="medicom-carousel" class="owl-carousel wrapper-padding-none">
+
+                <?php /* @var $p \Pharmacy\Model\Pharmacy */ ?>
+                <?php foreach($pharmacy as $k => $p): ?>
+
+                    <?php /* @var $place \CmsIr\Place\Model\Place */ ?>
+                    <?php $place = $p->getPlace() ?>
+
+                    <div class="item" id="apteka_<?php echo $k ?>" data-address="<?php echo $place->getStreet() . ' ' . $place->getStreetNumber() . ', ' . $place->getCity() . ', ' . $place->getCountry() ?>">
+                        <div class="team-thumb">
+                            <div class="home-box opening-hours clearfix">
+                                <span class="glyphicon glyphicon-time"></span>
+                                <h3><?php echo $p->getStreet() ?></h3>
+                                <h3><span class="glyphicon glyphicon-earphone"></span><?php echo $p->getPhone() ?></h3>
+                                <ul class="list-unstyled">
+                                    <li class="clearfix">
+                                        <span>Poniedziałek - Piątek</span>
+                                        <div class="value"><?php echo $p->getWeekdays() ?></div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>Sobota</span>
+                                        <div class="value"><?php echo $p->getSaturday() ?></div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>Niedziela</span>
+                                        <div class="value"><?php echo $p->getSunday() ?></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-sm-6">
-                        <form role="form" id="contact-form">
-                            <div class="form-group">
-                                <label>Imię i Nazwisko:</label>
-                                <input type="text" class="form-control" required name="name"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Adres email:</label>
-                                <input type="text" class="form-control" required name="email"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Wiadomość:</label>
-                                <textarea style="height: 110px" class="form-control" required name="text"></textarea>
-                            </div>
-                            <button class="btn btn-success">Wyślij wiadomość</button>
+                <?php endforeach ?>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="sub-page-content team-description">
+        <div class="container ">
+            <h2 class="light bordered">Dojazd do<span>Naszych aptek</span></h2>
+            <ul class="list-unstyled jcarousel-skin-tango" id="doctors-list">
+                <?php /* @var $p \Pharmacy\Model\Pharmacy */ ?>
+                <?php foreach($pharmacy as $k => $p): ?>
+
+                    <?php /* @var $place \CmsIr\Place\Model\Place */ ?>
+                    <?php $place = $p->getPlace() ?>
+
+                    <li>
+                        <div class="map" id="map_1"><iframe src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=pl&amp;geocode=&amp;q=<?php echo $place->getStreet() ?> <?php echo $place->getStreetNumber() ?>, <?php echo $place->getCity() ?>, <?php echo $place->getCountry() ?>&amp;ie=UTF8&amp;z=12&amp;ll=<?php echo $place->getLatitude() ?>,<?php echo $place->getLongitude() ?>&amp;output=embed"></iframe></div>
+                    </li>
+
+                <?php endforeach ?>
+
+            </ul>
+
+            <div class="get-directions">
+                <form action="http://maps.google.com/maps" method="get" target="_blank">
+                    <input type="text" name="saddr" placeholder="Wpisz swój adres" />
+                    <input type="hidden" name="daddr" value="Piłsudskiego 20, Rzeszów, Polska" />
+                    <input type="hidden" name="map" value="1" />
+                    <input type="submit" value="Get directions" class="direction-btn" />
+                </form>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="light bordered">Wyślij<span>wiadomość</span></h2>
+                    <div class="contact-form">
+                        <div id="error" class="" style="display:none;"></div>
+                        <div id="message-contact" class="success" style="display:none;">Wiadomość została wysłana poprawnie</div>
+                        <form name="appoint_form" id="appoint_form" method="post">
+                            <input type="text" name="app_fname" id="app_fname" placeholder="Imię" >
+                            <input type="text" name="app_lname" id="app_lname" placeholder="Nazwisko" >
+                            <input type="email" name="app_email_address" id="app_email_address" placeholder="Adres email">
+                            <input type="text" name="app_phone" id="app_phone" placeholder="Numer telefonu">
+                            <textarea placeholder="Wiadomość" name="app_msg" id="app_msg"></textarea>
+                            <input type="submit" value="wyślij" class="btn btn-default btn-rounded pull-right btn-submit">
                         </form>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="light bordered">Kontakt<span>do nas</span></h2>
+                    <div class="get-in-touch-widget">
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-phone"></i>65 511 70 87</li>
+                            <li><i class="fa fa-envelope"></i><a href="mailto:biuro@aptekagrodzka.pl">biuro@aptekagrodzka.pl</a></li>
+                            <li><i class="fa fa-globe"></i><a href="http://www.aptekagrodzka.pl">www.aptekagrodzka.pl</a></li>
+                            <li><i class="fa fa-clock-o"></i>Pn - Pt 9:00 - 16:00</li>
+                        </ul>
                     </div>
 
                 </div>
-
             </div>
+
         </div>
     </div>
-</div>
-<?php echo $this->partial('partial/contact-modal'); ?>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMXIADDYpjC70apohPnVfbavUKwwpkINo"></script>
-<script src="<?php echo $this->basePath().'/js/contact.js'; ?>"></script>
+<?php endif ?>
+
+<script>
+    $(function () {
+        //jcarousel
+        $('#doctors-list').jcarousel({
+            scroll :1
+        });
+
+        $("#medicom-carousel .item").off('click').on('click', function () {
+            $("#medicom-carousel .item .home-box").removeClass('current-apteka');
+            $(this).find('.home-box').addClass('current-apteka');
+            var item = $(this).attr('id');
+            var index = item.indexOf('_');
+            var mapId = item.slice(++index, item.length);
+            var id = parseInt(mapId);
+            var jcarousel = $('#doctors-list').data('jcarousel');
+
+            var address = $(this).attr('data-address');
+            $('.get-directions form input[name="daddr"]').val(address);
+            $('.get-directions form input[name="map"]').val(id);
+            jcarousel.scroll(id);
+        });
+
+        $('.get-directions form').submit(function(e) {
+            e.preventDefault();
+            var mapId = $('.get-directions form input[name="map"]').val();
+            var data = $(this).serialize();
+            $('#map_'+mapId+' iframe').attr('src', 'http://maps.google.com/maps?'+data+'&output=embed');
+        });
+
+        $('.btn-submit').click(function (e) {
+            e.preventDefault();
+            var name = $('input[name="app_fname"]').val();
+            var surname = $('input[name="app_lname"]').val();
+            var email = $('input[name="app_email_address"]').val();
+            var phone = $('input[name="app_phone"]').val();
+            var text = $('#app_msg').val();
+
+            if(name.length == 0){
+                $('input[name="app_fname"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_fname"]').css('border-color', '#F4F4F4');
+            }
+
+            if(surname.length == 0){
+                $('input[name="app_lname"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_lname"]').css('border-color', '#F4F4F4');
+            }
+
+            if(email.length == 0){
+                $('input[name="app_email_address"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_email_address"]').css('border-color', '#F4F4F4');
+            }
+
+            if(phone.length == 0){
+                $('input[name="app_phone"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_phone"]').css('border-color', '#F4F4F4');
+            }
+
+            if(text.length == 0){
+                $('#app_msg').css('border-color', 'red');
+            } else {
+                $('#app_msg').css('border-color', '#F4F4F4');
+            }
+
+            if(name.length > 0 &&  email.length > 0 && text.length > 0){
+                $.ajax({
+                    type: "POST",
+                    url: "/contact-form",
+                    dataType : 'json',
+                    data: {
+                        name: name,
+                        surname: surname,
+                        email: email,
+                        phone: phone,
+                        text: text
+                    },
+                    success: function(json)
+                    {
+                        $('input[name="app_fname"]').val('');
+                        $('input[name="app_lname"]').val('');
+                        $('input[name="app_email_address"]').val('');
+                        $('input[name="app_phone"]').val('');
+                        $('#app_msg').val('');
+                        $('#message-app').text('Poprawnie wysłano wiadomość').css('display', 'block');
+                    }
+                });
+            }
+        });
+    });
+</script>

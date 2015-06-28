@@ -1,23 +1,398 @@
-<!-- BEGIN HEADER FULL IMAGE SLIDE -->
-<div class="full-slide-image" id="full-img-slide">
-    <div class="slide-inner">
-        <?php echo $this->partial('partial/page/slider', array('items' => $items)); ?>
-    </div><!-- /.slide-inner -->
-</div><!-- /.full-slide-image -->
-<!-- END HEADER FULL IMAGE SLIDE -->
+<?php if(!empty($items)): ?>
 
-<!-- BEGIN FEATURE SECTION -->
-<div class="section">
-    <div class="container">
-        <?php echo $this->partial('partial/page/offer'); ?>
-    </div><!-- /.container -->
-</div><!-- /.section -->
-<!-- END FEATURE SECTION -->
+    <div class="tp-banner-container index-rev-slider">
+        <div class="tp-banner">
+            <ul>
+                <!-- SLIDERIGHT -->
 
-<!-- BEGIN CLIENT LOGO SECTION -->
-<div class="section">
-    <div class="container">
-        <?php echo $this->partial('partial/page/banners'); ?>
-    </div><!-- /.container -->
-</div><!-- /.section -->
-<!-- END CLIENT LOGO SECTION -->
+                <?php /* @var $item \CmsIr\Slider\Model\SliderItem */ ?>
+                <?php foreach($items as $item): ?>
+
+                    <?php $filename = $item->getFilename() ?>
+                    <?php if(!empty($filename)): ?>
+
+                        <li data-transition="slideright" data-slotamount="6" data-thumb="">
+                            <img src="<?php echo $this->basePath() ?>/files/slider/<?php echo $item->getFilename() ?>" alt="image" />
+                            <div class="caption sft" data-x="330" data-y="120" data-speed="2000" data-start="1300" data-easing="easeOutBack"><img src="/images/logo_slider.png" alt=""></div>
+                            <div class="caption sft big_white" data-x="260" data-y="290" data-speed="1500" data-start="1700" data-easing="easeOutExpo"><strong><?php echo $item->getTitle() ?></strong></div>
+                            <div class="caption sfb medium_grey text-center" data-x="140" data-y="370" data-speed="1500" data-start="2500" data-easing="easeOutExpo" style="white-space: inherit; width: 43%;"><?php echo $item->getDescription() ?></div>
+                            <div class="caption sfb" data-x="492" data-y="450" data-speed="2000" data-start="3000" data-easing="easeOutExpo"><a href="<?php echo $item->getUrl() ?>" class="btn btn-rounded btn-bordered">Czytaj więcej</a></div>
+                        </li>
+
+                    <?php endif ?>
+
+                <?php endforeach ?>
+
+            </ul>
+        </div>
+    </div>
+
+<?php endif ?>
+
+<?php if(!empty($pharmacy)): ?>
+
+    <section class="meet-the-doctors no-bg-img team-carousel">
+        <div class="container">
+            <h2 class="light bordered">Nasze <span>Apteki</span></h2>
+
+            <div id="medicom-carousel" class="owl-carousel wrapper-padding-none">
+
+                <?php /* @var $p \Pharmacy\Model\Pharmacy */ ?>
+                <?php foreach($pharmacy as $p): ?>
+
+                    <div class="item">
+                        <div class="team-thumb">
+                            <div class="home-box opening-hours clearfix">
+                                <span class="glyphicon glyphicon-time"></span>
+                                <h3><?php echo $p->getStreet() ?></h3>
+                                <h3><span class="glyphicon glyphicon-earphone"></span><?php echo $p->getPhone() ?></h3>
+                                <ul class="list-unstyled">
+                                    <li class="clearfix">
+                                        <span>Poniedziałek - Piątek</span>
+                                        <div class="value"><?php echo $p->getWeekdays() ?></div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>Soboa</span>
+                                        <div class="value"><?php echo $p->getSaturday() ?></div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>Niedziela</span>
+                                        <div class="value"><?php echo $p->getSunday() ?></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php endforeach ?>
+
+            </div>
+
+        </div>
+    </section>
+
+<?php endif ?>
+
+<div class="clearfix"></div>
+
+<div class="content-index">
+
+    <section class="about-sec text-center" data-stellar-background-ratio="0.3">
+        <div class="container">
+            <h1>Apteka Grodzka</h1>
+            <p class="lead">Miesięcznie w liczbach</p>
+
+            <div class="row text-center" id="counters">
+                <div class="col-md-3">
+                    <div class="counter">
+                        <span class="quantity-counter1 highlight">0</span>
+                        <h6 class="counter-details">Leków i preparatów</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="counter">
+                        <span class="quantity-counter2 highlight">0</span>
+                        <h6 class="counter-details">Pacjentów</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="counter">
+                        <span class="quantity-counter3 highlight">0</span>
+                        <h6 class="counter-details">Godzin pracy</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="counter">
+                        <span class="quantity-counter4 highlight">0</span>
+                        <h6 class="counter-details">Farmaceutów</h6>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="meet-the-doctors no-bg-img team-carousel appointment-sec text-center">
+        <div class="container">
+            <h1 class="light">Poznaj nasz <b>zespół specjalistów</b></h1>
+            <p class="lead">Każdy członek naszego zespołu jest wykwalifikowanym specjalistą, który chętnie udzieli Państwu pomocy, odpowie na wszystkie pytania i doradzi w wyborze odpowiedniego leku.</p>
+            <br/><br/><br/>
+            <div id="medicom-carousel-1" class="owl-carousel wrapper-padding-none">
+
+                <?php /* @var $user \CmsIr\Users\Model\Users */ ?>
+                <?php foreach($users as $user): ?>
+
+                    <?php $extra = unserialize($user->getExtra()) ?>
+
+                    <div class="item">
+                        <div class="team-thumb">
+                            <img src="<?php echo $this->basePath() ?>/files/users/<?php echo $user->getFilename() ?>" class="img-rounded" alt="">
+                        </div>
+                        <h5><a href="#"><?php echo $user->getName() ?>  <?php echo $user->getSurname() ?></a><br><span><?php echo $extra['education'] ?></span></h5>
+                        <p><?php echo $extra['about'] ?></p>
+                        <a href="<?php echo $this->url('viewPage', array('slug' => 'nasi-specjalisci')) ?>"><em>- przeczytaj więcej</em></a>
+                    </div>
+
+                <?php endforeach ?>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="latest-news">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="bordered light">Najnowsze <span>Aktualności</span></h2>
+                    <div class="row">
+                        <div class="col-md-5">
+
+                            <?php /* @var $n \CmsIr\Post\Model\Post */ ?>
+                            <?php if(!empty($news[0])): ?>
+                                <?php $n = $news[0] ?>
+                                <?php $date = explode('-', $n->getDate())?>
+                                <?php $desc = mb_substr(strip_tags($n->getText()), 0, 200, 'UTF-8') ?>
+
+                                <article class="blog-item">
+                                    <div class="blog-thumbnail">
+                                        <img alt="" src="<?php echo $this->basePath() ?>/files/post/<?php echo $n->getFilenameMain() ?>">
+                                        <div class="blog-date"><p class="day"><?php echo $date[0] ?></p><p class="monthyear"><?php echo $date[1] . ' ' . $date[2] ?></p></div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h4 class="blog-title"><a href="#"><?php echo $n->getName() ?></a></h4>
+                                        <p><?php echo $desc ?>...</p>
+                                        <a href="<?php echo $this->url('viewNews', array('slug' => $n->getUrl())) ?>" class="btn btn-default btn-mini btn-rounded">CZYTAJ WIĘCEJ</a>
+                                    </div>
+                                </article>
+
+                            <?php endif ?>
+
+                            <?php if(!empty($news[1])): ?>
+                                <?php $n = $news[1] ?>
+                                <?php $date = explode('-', $n->getDate())?>
+                                <?php $desc = mb_substr(strip_tags($n->getText()), 0, 200, 'UTF-8') ?>
+
+                                <article class="blog-item">
+                                    <div class="blog-thumbnail">
+                                        <img alt="" src="<?php echo $this->basePath() ?>/files/post/<?php echo $n->getFilenameMain() ?>">
+                                        <div class="blog-date"><p class="day"><?php echo $date[0] ?></p><p class="monthyear"><?php echo $date[1] . ' ' . $date[2] ?></p></div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h4 class="blog-title"><a href="#"><?php echo $n->getName() ?></a></h4>
+                                        <p><?php echo $desc ?>...</p>
+                                        <a href="<?php echo $this->url('viewNews', array('slug' => $n->getUrl())) ?>" class="btn btn-default btn-mini btn-rounded">CZYTAJ WIĘCEJ</a>
+                                    </div>
+                                </article>
+
+                            <?php endif ?>
+
+                        </div>
+
+                        <div class="col-md-7">
+                            <?php if(!empty($news[2])): ?>
+                                <?php $n = $news[2] ?>
+                                <?php $date = explode('-', $n->getDate())?>
+                                <?php $desc = mb_substr(strip_tags($n->getText()), 0, 200, 'UTF-8') ?>
+
+                                <article class="blog-item">
+                                    <div class="blog-thumbnail">
+                                        <img alt="" src="<?php echo $this->basePath() ?>/files/post/<?php echo $n->getFilenameMain() ?>">
+                                        <div class="blog-date"><p class="day"><?php echo $date[0] ?></p><p class="monthyear"><?php echo $date[1] . ' ' . $date[2] ?></p></div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h4 class="blog-title"><a href="#"><?php echo $n->getName() ?></a></h4>
+                                        <p><?php echo $desc ?>...</p>
+                                        <a href="<?php echo $this->url('viewNews', array('slug' => $n->getUrl())) ?>" class="btn btn-default btn-mini btn-rounded">CZYTAJ WIĘCEJ</a>
+                                    </div>
+                                </article>
+
+                            <?php endif ?>
+
+                            <?php if(!empty($news[3])): ?>
+                                <?php $n = $news[3] ?>
+                                <?php $date = explode('-', $n->getDate())?>
+                                <?php $desc = mb_substr(strip_tags($n->getText()), 0, 200, 'UTF-8') ?>
+
+                                <article class="blog-item">
+                                    <div class="blog-thumbnail">
+                                        <img alt="" src="<?php echo $this->basePath() ?>/files/post/<?php echo $n->getFilenameMain() ?>">
+                                        <div class="blog-date"><p class="day"><?php echo $date[0] ?></p><p class="monthyear"><?php echo $date[1] . ' ' . $date[2] ?></p></div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h4 class="blog-title"><a href="#"><?php echo $n->getName() ?></a></h4>
+                                        <p><?php echo $desc ?>...</p>
+                                        <a href="<?php echo $this->url('viewNews', array('slug' => $n->getUrl())) ?>" class="btn btn-default btn-mini btn-rounded">CZYTAJ WIĘCEJ</a>
+                                    </div>
+                                </article>
+
+                            <?php endif ?>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <?php echo $this->partial('partial/sidebar') ?>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="appointment-sec text-center">
+        <div class="container">
+            <h1 class="light">Poradź się <b>specjalisty</b></h1>
+            <p class="lead">W trosce o dobro naszych pacjentów, oferujemy fachowe porady i profesjonalną pomoc opartą w dużej wiedzy i odpowiednich kwalifikacjach. Jeżeli chcesz dowiedzieć się więcej o lekach stosowanych w naszych aptekach zapraszamy do kontaktu</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <figure><img src="images/specjalista-kontakt.png" alt="image" title="Appointment image" class="img-responsive lady1"></figure>
+                </div>
+                <div class="col-md-6">
+                    <div class="appointment-form clearfix">
+                        <div class="error" id="error" style="display:none;"></div>
+                        <div class="success" id="message-app" style="display:none;"></div>
+                        <form name="appoint_form" id="appoint_form" method="post">
+                            <input type="text" name="app_fname" id="app_fname" placeholder="Imię" >
+                            <input type="text" name="app_lname" id="app_lname" placeholder="Nazwisko" >
+                            <input type="email" name="app_email_address" id="app_email_address" placeholder="Adres email">
+                            <input type="text" name="app_phone" id="app_phone" placeholder="Numer telefonu">
+                            <textarea placeholder="Wiadomość" name="app_msg" id="app_msg"></textarea>
+                            <input type="submit" value="wyślij" class="btn btn-default btn-rounded pull-right btn-submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="carousel-testimonials" class="carousel slide testimonials-carousel" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-testimonials" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-testimonials" data-slide-to="1"></li>
+                            <li data-target="#carousel-testimonials" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <h1 class="text-center light">Zobacz co mówią <b>o nas pacjenci</b></h1>
+                        <div class="carousel-inner text-center">
+                            <div class="item active">
+                                <p>Oby we wszystkich sklepach było tak miło, jak w tej aptece. Wielokrotnie korzystałam z każdej apteki i w każdej miła obsługa. Nie mam zastrzeżeń. Podziwiam farmaceutów i jestem pełna podziwu, że potrafią przeczytać to, co lekarz napisze. Nigdy mi się nie zdarzyło, abym otrzymała inny lek lub przeterminowy.</p>
+                                <div class="testimonials-patient-detail">
+                                    <img src="images/testimonial.jpg" class="img-circle img-thumbnail" alt="" title="">
+                                    <p><b>Halina Nowakowska</b><span>Emeryt</span></p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <p>Oby we wszystkich sklepach było tak miło, jak w tej aptece. Wielokrotnie korzystałam z każdej apteki i w każdej miła obsługa. Nie mam zastrzeżeń. Podziwiam farmaceutów i jestem pełna podziwu, że potrafią przeczytać to, co lekarz napisze. Nigdy mi się nie zdarzyło, abym otrzymała inny lek lub przeterminowy.</p>
+                                <div class="testimonials-patient-detail">
+                                    <img src="images/testimonial.jpg" class="img-circle img-thumbnail" alt="" title="">
+                                    <p><b>Halina Nowakowska</b><span>Emeryt</span></p>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <p>Oby we wszystkich sklepach było tak miło, jak w tej aptece. Wielokrotnie korzystałam z każdej apteki i w każdej miła obsługa. Nie mam zastrzeżeń. Podziwiam farmaceutów i jestem pełna podziwu, że potrafią przeczytać to, co lekarz napisze. Nigdy mi się nie zdarzyło, abym otrzymała inny lek lub przeterminowy.</p>
+                                <div class="testimonials-patient-detail">
+                                    <img src="images/testimonial.jpg" class="img-circle img-thumbnail" alt="" title="">
+                                    <p><b>Halina Nowakowska</b><span>Emeryt</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="medicom-app" data-stellar-background-ratio="0.3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="images/qr.png" class="app-img" alt="" title="">
+                </div>
+                <div class="col-md-7">
+                    <div class="medicom-app-content">
+                        <h1>Urządzenia mobilne</h1>
+                        <p class="lead">
+                            Niezależnie czy uruchomisz naszą stronę w komputerze, na tablecie czy na smartfonie, serwis automatycznie przeskaluje swój wygląd i dopasuje się do rozmiaru wyświetlacza, tak abyś mógł w sposób czytelny przeglądać całą zawartość.
+                            <br/> <br/>
+                            Zapraszamy do korzystania z naszego serwisu.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div><!--end content-index-->
+
+
+<script>
+    $(function () {
+        $('.btn-submit').click(function (e) {
+            e.preventDefault();
+            var name = $('input[name="app_fname"]').val();
+            var surname = $('input[name="app_lname"]').val();
+            var email = $('input[name="app_email_address"]').val();
+            var phone = $('input[name="app_phone"]').val();
+            var text = $('#app_msg').val();
+
+            if(name.length == 0){
+                $('input[name="app_fname"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_fname"]').css('border-color', '#F4F4F4');
+            }
+
+            if(surname.length == 0){
+                $('input[name="app_lname"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_lname"]').css('border-color', '#F4F4F4');
+            }
+
+            if(email.length == 0){
+                $('input[name="app_email_address"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_email_address"]').css('border-color', '#F4F4F4');
+            }
+
+            if(phone.length == 0){
+                $('input[name="app_phone"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_phone"]').css('border-color', '#F4F4F4');
+            }
+
+            if(text.length == 0){
+                $('#app_msg').css('border-color', 'red');
+            } else {
+                $('#app_msg').css('border-color', '#F4F4F4');
+            }
+
+            if(name.length > 0 &&  email.length > 0 && text.length > 0){
+                $.ajax({
+                    type: "POST",
+                    url: "/contact-form",
+                    dataType : 'json',
+                    data: {
+                        name: name,
+                        surname: surname,
+                        email: email,
+                        phone: phone,
+                        text: text
+                    },
+                    success: function(json)
+                    {
+                        $('input[name="app_fname"]').val('');
+                        $('input[name="app_lname"]').val('');
+                        $('input[name="app_email_address"]').val('');
+                        $('input[name="app_phone"]').val('');
+                        $('#app_msg').val('');
+                        $('#message-app').text('Poprawnie wysłano wiadomość').css('display', 'block');
+                    }
+                });
+            }
+        });
+    });
+</script>

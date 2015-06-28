@@ -28,6 +28,7 @@ return array(
             'partial/newsletter-modal' => __DIR__ . '/../view/partial/newsletter-modal.phtml',
             'partial/contact-modal' => __DIR__ . '/../view/partial/contact-modal.phtml',
             'partial/breadcrumbs' => __DIR__ . '/../view/partial/breadcrumbs.phtml',
+            'partial/sidebar' => __DIR__ . '/../view/partial/sidebar.phtml',
         ),
         'template_path_stack' => array(
             'page_home_site' => __DIR__ . '/../view'

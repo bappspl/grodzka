@@ -1,15 +1,70 @@
-<?php /* @var $page \CmsIr\Page\Model\Page */?>
-<?php echo $this->partial('partial/breadcrumbs', array('breadcrumbs' => array('/' => 'Strona główna', $page->getName()))); ?>
+<?php /* @var $page \CmsIr\Page\Model\Page */ ?>
 
-<div class="container">
-    <div class="row">
-        <!-- BLOG LIST SECTION -->
-        <div class="col-sm-12">
-            <div class="section">
-                <h4 class="light-font line-height-28 margin-top-50">
-                    <?php echo $page->getContent() ?>
-                </h4>
+<section class="sub-page-banner text-center" data-stellar-background-ratio="0.3" style="background: url(<?php echo $this->basePath() ?>/files/page/<?php echo $page->getFilenameMain() ?>) no-repeat center">
+
+    <div class="container">
+        <h1 class="entry-title"><?php echo $page->getName() ?></h1>
+        <p><?php echo $page->getSubtitle() ?></p>
+    </div>
+</section>
+
+<div class="sub-page-content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 blog-wrapper clearfix">
+                <h2 class="bordered light"><?php echo $page->getName() ?></h2>
+                <article class="blog-item blog-full-width blog-detail">
+                    <div class="blog-content">
+
+                        <?php echo $page->getContent() ?>
+
+                    </div>
+
+                    <div class="portfolio">
+
+                        <?php $files = $page->getFiles() ?>
+                        <?php $files = array_chunk($files, 2) ?>
+
+                        <?php foreach($files as $f): ?>
+
+                            <div class="row">
+
+                                <?php /* @var $file \CmsIr\File\Model\File */ ?>
+                                <?php foreach($f as $file): ?>
+
+                                    <article class="entry doctors col-sm-6">
+                                        <div class="gallery-thumb">
+                                            <span class="overlay"></span>
+                                            <a href="<?php echo $this->basePath() ?>/files/page/<?php echo $file->getFilename() ?>" data-rel="prettyPhoto" class="link-preety"></a>
+                                            <img src="<?php echo $this->basePath() ?>/files/page/<?php echo $file->getFilename() ?>" alt="" class="img-responsive"/>
+                                        </div>
+                                    </article>
+
+                                <?php endforeach ?>
+
+                            </div>
+
+                        <?php endforeach ?>
+
+                    </div>
+
+                    <div class="share-post clearfix">
+                        <label>Podziel się wpisem</label>
+                        <ul class="social-rounded">
+                            <li><a href="http://www.facebook.com/share.php?u=<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $this->url('viewPage', array('slug' => $page->getUrl())); ?>/&title=<?php echo $page->getName(); ?>"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="http://twitter.com/home?status=<?php echo $page->getName(); ?>+<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $this->url('viewPage', array('slug' => $page->getUrl())); ?>"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://plus.google.com/share?url=<?php echo 'http://' .  $_SERVER['HTTP_HOST'] . $this->url('viewPage', array('slug' => $page->getUrl())); ?>"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+
+                </article>
             </div>
+
+            <?php echo $this->partial('partial/sidebar') ?>
+
         </div>
     </div>
-</div>
+
+    <div class="clr"></div>
+</div><!--end sub-page-content-->

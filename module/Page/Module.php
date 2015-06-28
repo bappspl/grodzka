@@ -2,6 +2,7 @@
 
 namespace Page;
 
+use CmsIr\Page\Model\Page;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
@@ -16,9 +17,17 @@ class Module
         $sm = $e->getApplication()->getServiceManager();
         $menu = $this->getMenuService($sm)->getMenuByMachineName('main-menu');
 
+        /* @var $polecaneMiejsca Page */
+        $polecaneMiejsca = $this->getPageService($sm)->findOneBySlug('polecane-miejsca');
+        $polecane = $polecaneMiejsca->getContent();
+
+        $ciastka = $this->getPageService($sm)->findOneBySlug('ciastka');
+        $c = $ciastka->getContent();
+
         $viewModel = $e->getViewModel();
         $viewModel->menu = $menu;
-
+        $viewModel->polecane = $polecane;
+        $viewModel->ciastka = $c;
     }
 
     public function getConfig()
@@ -42,6 +51,14 @@ class Module
      */
     public function getMenuService($sm)
     {
-        return$sm->get('CmsIr\Menu\Service\MenuService');
+        return $sm->get('CmsIr\Menu\Service\MenuService');
+    }
+
+    /**
+     * @return \CmsIr\Page\Service\PageService
+     */
+    public function getPageService($sm)
+    {
+        return $sm->get('CmsIr\Page\Service\PageService');
     }
 }

@@ -17,6 +17,10 @@ class Pharmacy extends Model
     protected $zip_code;
     protected $place_id;
 
+    //virtual
+
+    protected $place;
+
     public function exchangeArray($data)
     {
         $this->id = (!empty($data['id'])) ? $data['id'] : null;
@@ -30,6 +34,7 @@ class Pharmacy extends Model
         $this->sunday = (!empty($data['sunday'])) ? $data['sunday'] : null;
         $this->zip_code = (!empty($data['zip_code'])) ? $data['zip_code'] : null;
         $this->place_id = (!empty($data['place_id'])) ? $data['place_id'] : null;
+        $this->place = (!empty($data['place'])) ? $data['place'] : null;
     }
 
     /**
@@ -207,4 +212,21 @@ class Pharmacy extends Model
     {
         $this->saturday = $saturday;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @param mixed $place
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
+    }
+
 }

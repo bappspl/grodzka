@@ -1,126 +1,48 @@
-<?php echo $this->partial('partial/breadcrumbs', array('breadcrumbs' => array('/' => 'Strona główna', 'Aktualności'))); ?>
-<div class="container">
-<div class="row">
-<div class="col-sm-8 col-md-9">
+<section class="sub-page-banner text-center" data-stellar-background-ratio="0.3">
 
-    <!-- BLOG LIST SECTION -->
-    <div class="section">
-        <ul class="media-list blog-list">
-
-            <?php if(!empty($news)): ?>
-                <?php /* @var $oneNews \CmsIr\Post\Model\Post */ ?>
-                <?php foreach($news as $oneNews): ?>
-                    <?php
-                        $files = $oneNews->getFiles();
-                        $firstFile = reset($files);
-                        if(is_object($firstFile)) $fileName = $firstFile->getFilename();
-
-                        $title = $oneNews->getName();
-                        $url = $oneNews->getUrl();
-                        $text = strip_tags($oneNews->getText());
-                        $date = $oneNews->getDate();
-
-                        if(strlen($text) > 330) {
-                            $text = substr($text, 0, 330) . '..';
-                        }
-                    ?>
-                    <li class="media">
-                        <a class="pull-left" href="<?php echo $this->url('viewNews', array('slug' => $url)); ?>">
-
-                            <?php if(!empty($firstFile)): ?>
-                                <img class="media-object img-post" src="/files/post/<?php echo $fileName; ?>" alt="Image">
-                            <?php endif ?>
-
-                        </a>
-
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <a href="<?php echo $this->url('viewNews', array('slug' => $url)); ?>">
-                                    <?php echo $title; ?>
-                                </a>
-                            </h4>
-
-                            <p class="small">
-                                <i class="fa fa-clock-o"></i> <b><?php echo $date; ?></b>
-                            </p>
-
-                            <p>
-                                <?php echo $text; ?>
-                            </p>
-                        </div>
-                        <!-- /.media-body -->
-                    </li>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </ul>
-
-        <?php echo $this->paginationControl($paginator, 'sliding', array('partial/paginator.phtml', 'Album'), array('route' => 'newsList')) ?>
-
-
+    <div class="container">
+        <h1 class="entry-title">Aktualności</h1>
+        <p>Czytaj najnowsze informacje, bądź na bieżąco z promocjami oraz organizowanymi konkursami w naszych aptekach</p>
     </div>
-    <!-- /.section -->
-    <!-- END BLOG LIST SECTION -->
+</section>
 
+<div class="sub-page-content">
 
-</div>
-<!-- /.col-sm-8 col-md-9 -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 blog-wrapper clearfix">
+                <h2 class="bordered light">Aktualności</h2>
+                <?php if(!empty($news)): ?>
 
-<?php if(!empty($events)):?>
-<div class="col-sm-4 col-md-3">
+                    <?php /* @var $n \CmsIr\Post\Model\Post */ ?>
+                    <?php foreach($news as $n): ?>
 
-    <!-- BEGIN SIDEBAR -->
-    <div class="section sidebar">
+                        <?php $date = explode('-', $n->getDate())?>
+                        <?php $desc = mb_substr(strip_tags($n->getText()), 0, 200, 'UTF-8') ?>
 
-        <!-- Begin Recent post -->
-        <div class="panel panel-no-border panel-sidebar">
-            <div class="panel-heading">
-                <h3 class="panel-title">Ostatnie wydarzenia</h3>
+                        <article class="blog-item blog-full-width">
+                            <div class="blog-thumbnail">
+                                <img alt="" src="<?php echo $this->basePath() ?>/files/post/<?php echo $n->getFilenameMain() ?>">
+                            </div>
+                            <div class="blog-full-width-date">
+                                <p class="day"><?php echo $date[0] ?></p><p class="monthyear"><?php echo $date[1] . ' ' . $date[2] ?></p>
+                            </div>
+                            <div class="blog-content">
+                                <h4 class="blog-title"><a href="<?php echo $this->url('viewNews', array('slug' => $n->getUrl())) ?>"><?php echo $n->getName() ?></a></h4>
+                                <p><?php echo $desc ?></p>
+                                <a href="<?php echo $this->url('viewNews', array('slug' => $n->getUrl())) ?>" class="btn btn-default btn-mini btn-rounded">Zobacz</a>
+                            </div>
+                        </article>
+
+                    <?php endforeach ?>
+
+                <?php endif ?>
             </div>
-            <?php
-                $countEvents = count($events);
-                if($countEvents > 4) $max = 5; else $max = $countEvents;
-            ?>
 
-            <ul class="media-list">
-                <?php for($i=0; $i<$max; $i++): ?>
-                <?php
-                    $event = $events[$i];
-                    $files = $event->getFiles();
-                    $firstFile = reset($files);
-                    $fileName = $firstFile->getFilename();
+            <?php echo $this->partial('partial/sidebar') ?>
 
-                    $title = $event->getName();
-                    $url = $event->getUrl();
-                    $text = strip_tags($event->getText());
-                    $date = $event->getDate();
-                    if(strlen($text) > 50) {
-                        $text = substr($text, 0, 50) . '..';
-                    }
-                ?>
-                <li class="media">
-                    <a class="pull-left" href="<?php echo $this->url('viewEvent', array('slug' => $url)); ?>">
-                        <img class="media-object img-post" src="/files/post/<?php echo $fileName; ?>" alt="Image">
-                    </a>
-
-                    <div class="media-body">
-                        <p><a href="<?php echo $this->url('viewEvent', array('slug' => $url)); ?>"> <?php echo $text; ?> </a></p>
-                        <p class="small text-info"><?php echo $date; ?></p>
-                    </div>
-                </li>
-                <?php endfor; ?>
-            </ul>
         </div>
-        <!-- /.panel panel-no-border panel-sidebar -->
-        <!-- End Recent post -->
-
     </div>
-    <!-- /.section -->
-    <!-- END SIDEBAR -->
 
-</div>
-<!-- /.col-sm-4 col-md-3 -->
-<?php endif; ?>
-
-</div>
-<!-- /.row -->
-</div><!-- /.container -->
+    <div class="clr"></div>
+</div><!--end sub-page-content-->

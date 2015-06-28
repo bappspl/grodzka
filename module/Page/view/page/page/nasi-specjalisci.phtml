@@ -1,0 +1,149 @@
+<section class="sub-page-banner text-center" data-stellar-background-ratio="0.3" style="background-image: url(/images/specjalisci.jpg);">
+
+    <div class="container">
+        <h1 class="entry-title">Nasi specjaliści</h1>
+        <p>Każdy członek naszego zespołu jest wykwalifikowanym specjalistą, który chętnie udzieli Państwu pomocy, odpowie na wszystkie pytania i doradzi w wyborze odpowiedniego leku.</p>
+    </div>
+</section>
+
+<div class="sub-page-content">
+
+    <section class="team-description">
+        <div class="container">
+            <h2 class="light bordered">Nasi <span>specjaliści</span></h2>
+            <ul class="list-unstyled jcarousel-skin-tango" id="doctors-list">
+
+                <?php if(!empty($users)): ?>
+
+                    <?php /* @var $user \CmsIr\Users\Model\Users */ ?>
+                    <?php foreach($users as $user): ?>
+
+                        <?php $extra = unserialize($user->getExtra()) ?>
+
+                        <li>
+                            <div class="doctors-img">
+                                <img src="<?php echo $this->basePath() ?>/files/users/<?php echo $user->getFilename() ?>" width="531" alt="" title="">
+                            </div>
+                            <div class="doctors-detail">
+                                <h4 class="light"><?php echo $user->getName() ?> <b><?php echo $user->getSurname() ?> </b></h4>
+                                <p><label class="heading">Wykształcenie</label><label class="detail">  <?php echo $extra['education'] ?></label></p>
+                                <p><label class="heading">Doświadczenie</label><label class="detail">  <?php echo $extra['experience'] ?></label></p>
+                                <p><label class="heading">O sobie</label>
+                                    <label class="detail">
+
+                                        <?php echo $extra['about'] ?>
+
+                                    </label>
+                                </p>
+                            </div>
+                        </li>
+
+                    <?php endforeach ?>
+
+                <?php endif ?>
+
+            </ul>
+        </div>
+    </section>
+
+    <div class="clr"></div>
+</div><!--end sub-page-content-->
+
+<section class="appointment-sec text-center">
+    <div class="container">
+        <h1 class="light">Poradź się <b>specjalisty</b></h1>
+        <p class="lead">W trosce o dobro naszych pacjentów, oferujemy fachowe porady i profesjonalną pomoc opartą w dużej wiedzy i odpowiednich kwalifikacjach. Jeżeli chcesz dowiedzieć się więcej o lekach stosowanych w naszych aptekach zapraszamy do kontaktu</p>
+        <div class="row">
+            <div class="col-md-6">
+                <figure><img src="/images/specjalista-kontakt.png" alt="image" title="Appointment image" class="img-responsive lady1"></figure>
+            </div>
+            <div class="col-md-6">
+                <div class="appointment-form clearfix">
+                    <div class="error" id="error" style="display:none;"></div>
+                    <div class="success" id="message-app" style="display:none;"></div>
+                    <form name="appoint_form" id="appoint_form" method="post">
+                        <input type="text" name="app_fname" id="app_fname" placeholder="Imię" >
+                        <input type="text" name="app_lname" id="app_lname" placeholder="Nazwisko" >
+                        <input type="email" name="app_email_address" id="app_email_address" placeholder="Adres email">
+                        <input type="text" name="app_phone" id="app_phone" placeholder="Numer telefonu">
+                        <textarea placeholder="Wiadomość" name="app_msg" id="app_msg"></textarea>
+                        <input type="submit" value="wyślij" class="btn btn-default btn-rounded pull-right btn-submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    $(function () {
+        //jcarousel
+        $('#doctors-list').jcarousel({
+            scroll :1
+        });
+
+        $('.btn-submit').click(function (e) {
+            e.preventDefault();
+            var name = $('input[name="app_fname"]').val();
+            var surname = $('input[name="app_lname"]').val();
+            var email = $('input[name="app_email_address"]').val();
+            var phone = $('input[name="app_phone"]').val();
+            var text = $('#app_msg').val();
+
+            if(name.length == 0){
+                $('input[name="app_fname"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_fname"]').css('border-color', '#F4F4F4');
+            }
+
+            if(surname.length == 0){
+                $('input[name="app_lname"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_lname"]').css('border-color', '#F4F4F4');
+            }
+
+            if(email.length == 0){
+                $('input[name="app_email_address"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_email_address"]').css('border-color', '#F4F4F4');
+            }
+
+            if(phone.length == 0){
+                $('input[name="app_phone"]').css('border-color', 'red');
+            } else {
+                $('input[name="app_phone"]').css('border-color', '#F4F4F4');
+            }
+
+            if(text.length == 0){
+                $('#app_msg').css('border-color', 'red');
+            } else {
+                $('#app_msg').css('border-color', '#F4F4F4');
+            }
+
+            if(name.length > 0 &&  email.length > 0 && text.length > 0){
+                $.ajax({
+                    type: "POST",
+                    url: "/contact-form",
+                    dataType : 'json',
+                    data: {
+                        name: name,
+                        surname: surname,
+                        email: email,
+                        phone: phone,
+                        text: text
+                    },
+                    success: function(json)
+                    {
+                        $('input[name="app_fname"]').val('');
+                        $('input[name="app_lname"]').val('');
+                        $('input[name="app_email_address"]').val('');
+                        $('input[name="app_phone"]').val('');
+                        $('#app_msg').val('');
+                        $('#message-app').text('Poprawnie wysłano wiadomość').css('display', 'block');
+                    }
+                });
+            }
+        });
+    });
+</script>

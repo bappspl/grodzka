@@ -1,0 +1,93 @@
+div.light_square .pp_contract:hover {
+	background: url(../images/sprite.png) 0 -47px no-repeat;
+	cursor: pointer
+}
+div.light_square .pp_close {
+	background: url("../images/sprite.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 32px;
+    width: 28px;}
+
+div.pp_overlay {
+	background: #000;
+	display: none;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 9500
+}
+div.pp_pic_holder {
+	display: none;
+	position: absolute;
+	width: 100px;
+	z-index: 10000
+}
+.pp_content {
+	height: 40px;
+	min-width: 40px
+}
+* html .pp_content {
+	width: 40px
+}
+.pp_content_container {
+	position: relative;
+	text-align: left;
+	width: 100%
+}
+.pp_content_container .pp_left {
+	padding-left: 20px
+}
+
+
+div.pp_default .pp_content, div.light_rounded .pp_content {
+	background-color: #fff
+}
+div.pp_default #pp_full_res .pp_inline, div.light_rounded .pp_content .ppt, div.light_rounded #pp_full_res .pp_inline, div.light_square .pp_content .ppt, div.light_square #pp_full_res .pp_inline, div.facebook .pp_content .ppt, div.facebook #pp_full_res .pp_inline {
+	color: #000
+}
+div.pp_default .pp_gallery ul li a:hover, div.pp_default .pp_gallery ul li.selected a, .pp_gallery ul a:hover, .pp_gallery li.selected a {
+	border-color: #fff
+}
+div.pp_default .pp_details, div.light_rounded .pp_details, div.dark_rounded .pp_details, div.dark_square .pp_details, div.light_square .pp_details, div.facebook .pp_details {
+	position: relative
+}
+div.light_rounded .pp_top .pp_middle, div.light_rounded .pp_content_container .pp_left, div.light_rounded .pp_content_container .pp_right, div.light_rounded .pp_bottom .pp_middle, div.light_square .pp_left, div.light_square .pp_middle, div.light_square .pp_right, div.light_square .pp_content, div.facebook .pp_content {
+	background: #fff
+}
+
+.pp_top, .pp_bottom {
+	height: 20px;
+	position: relative
+}
+* html .pp_top, * html .pp_bottom {
+	padding: 0 20px
+}
+.pp_top .pp_left, .pp_bottom .pp_left {
+	height: 20px;
+	left: 0;
+	position: absolute;
+	width: 20px
+}
+.pp_top .pp_middle, .pp_bottom .pp_middle {
+	height: 20px;
+	left: 20px;
+	position: absolute;
+	right: 20px
+}
+* html .pp_top .pp_middle, * html .pp_bottom .pp_middle {
+	left: 0;
+	position: static
+}
+.pp_top .pp_right, .pp_bottom .pp_right {
+	height: 20px;
+	left: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20px
+}
+.pp_fade, .pp_gallery li.default a img {
+	display: none
+}
+.ppt{ display:none !important;}

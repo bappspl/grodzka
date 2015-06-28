@@ -24,13 +24,10 @@ return array(
     'newsList' => array(
         'type' => 'Segment',
         'options' => array(
-            'route'    => '/aktualnosci[/strona/:number]',
+            'route'    => '/aktualnosci',
             'defaults' => array(
                 'controller' => 'Page\Controller\Page',
                 'action'     => 'newsList',
-            ),
-            'constraints' => array(
-                'number' => '[0-9_-]+'
             ),
         ),
     ),

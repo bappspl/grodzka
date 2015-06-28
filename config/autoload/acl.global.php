@@ -68,6 +68,9 @@ return array(
                 'Medicaments\Controller\Medicaments' => array(
                     'all'	=> 'superadmin',
                 ),
+                'CmsIr\File\Controller\File' => array(
+                    'all'	=> 'superadmin',
+                ),
             )
         )
     )

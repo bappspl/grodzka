@@ -1,0 +1,71 @@
+<aside class="col-md-4">
+    <h2 class="bordered light">Gazetka <span>promocyjna</span></h2>
+    <div class="what-doctor-say clearfix">
+
+        <?php if(!empty($newspapperFiles)): ?>
+
+            <div id="carousel-meet-doctors" class="carousel slide text-center" data-ride="carousel">
+                <!-- Indicators -->
+                <div><b>drogeria GRODZKA</b></div>
+                <ol class="carousel-indicators">
+                    <?php /* @var $file \CmsIr\File\Model\File */ ?>
+                    <?php foreach($newspapperFiles as $k => $file): ?>
+
+                        <li data-target="#carousel-meet-doctors" data-slide-to="<?php echo $k ?>" <?php echo $k == 0 ? 'class="active"' : '' ?>></li>
+
+                    <?php endforeach ?>
+
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+
+                    <?php foreach($newspapperFiles as $k => $file): ?>
+
+                        <div class="item <?php echo $k == 0 ? ' active text-center' : '' ?>">
+                            <img src="<?php echo $this->basePath() ?>/files/gallery/<?php echo $file->getFilename() ?>" class="list-inline" alt="" title="">
+                        </div>
+
+                    <?php endforeach ?>
+
+                </div>
+
+            </div>
+
+        <?php endif ?>
+
+        <div class="clearfix"></div>
+        <br/><br/>
+        <a href="<?php echo $this->basePath() ?>/files/file/<?php echo $newspaper->getFilename() ?>" class="btn btn-default btn-mini btn-rounded">Pobierz</a>
+
+    </div>
+    <h2 class="bordered light">Wszystko <span>o lekach</span></h2>
+    <div class="panel-group" id="accordion">
+
+        <?php if(!empty($medicaments)): ?>
+
+            <?php /* @var $m \Medicaments\Model\Medicaments */ ?>
+            <?php foreach($medicaments as $k => $m): ?>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title <?php echo $k == 0 ? 'active' : '' ?>">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $k ?>">
+                                <span><i class="fa fa-plus <?php echo $k == 0 ? 'fa-minus' : '' ?>"></i></span><?php echo $m->getName() ?>
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="collapse<?php echo $k ?>" class="panel-collapse collapse <?php echo $k == 0 ? 'in' : '' ?>">
+                        <div class="panel-body">
+                            <?php echo $m->getDescription() ?>
+                        </div>
+                    </div>
+                </div>
+
+            <?php endforeach ?>
+
+        <?php endif ?>
+
+    </div>
+</aside>

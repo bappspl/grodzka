@@ -1,17 +1,47 @@
-<!-- BEGIN TOP NAVBAR -->
-<div class="top-navbar light-color">
+<header class="medicom-header">
+    <div class="solid-row"></div>
     <div class="container">
-        <?php echo $this->partial('partial/layout/header-navbar'); ?>
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="/images/logo.png" alt="image" title="Medicom Logo"></a>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right medical-nav" id="bs-example-navbar-collapse-1">
+                <?php
+                    $ulClass = 'nav navbar-nav';
+                    $liClass = '';
+                    $subUlClass = '';
+                    $subLiClass = '';
+                ?>
+                <?php echo $this->menuHelper()->renderMenu($menu, $ulClass, $liClass, $subUlClass, $subLiClass); ?>
 
-        <?php
-            $ulClass = 'menus';
-            $liClass = 'parent';
-            $subUlClass = 'sub-menus';
-            $subLiClass = 'sub-list';
-        ?>
-        <?php echo $this->menuHelper()->renderMenu($menu, $ulClass, $liClass, $subUlClass, $subLiClass); ?>
+<!--                <ul class="nav navbar-nav">-->
+<!--                    <li class="dropdown active">-->
+<!--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li><a href="index.html">Home Page One</a></li>-->
+<!--                            <li><a href="index.html">Home Page Two</a></li>-->
+<!--                            <li><a href="index.html">Home Page Three</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!---->
+<!--                    <li><a href="#">O Aptekach</a></li>-->
+<!--                    <li><a href="#">Aktualności</a></li>-->
+<!--                    <li><a href="#">Dyżury aptek</a></li>-->
+<!--                    <li><a href="#">Gazetka promocyjna</a></li>-->
+<!--                    <li><a href="#">Kontakt</a></li>-->
+<!--                </ul>-->
+            </div><!-- /.navbar-collapse -->
+        </nav>
 
-    </div><!-- /.container -->
-</div><!-- /.top-navbar -->
-<!-- END TOP NAVBAR -->
+    </div>
+
+</header>
